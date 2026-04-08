@@ -97,7 +97,6 @@ export default async function NoticiaPage({ params }: PageProps) {
 					<div className="flex gap-3">
 						<button
 							type="button"
-							onClick={() => {}}
 							className="w-10 h-10 bg-[#1877F2] text-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
 							aria-label="Compartilhar no Facebook"
 						>
@@ -108,7 +107,6 @@ export default async function NoticiaPage({ params }: PageProps) {
 						</button>
 						<button
 							type="button"
-							onClick={() => {}}
 							className="w-10 h-10 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
 							aria-label="Compartilhar no WhatsApp"
 						>
