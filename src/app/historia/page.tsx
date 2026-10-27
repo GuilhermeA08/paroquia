@@ -10,75 +10,59 @@ export const metadata: Metadata = {
 
 export default function HistoriaPage() {
 	return (
-		<div className="py-16">
-			<div className="max-w-7xl mx-auto px-4">
-				<SectionTitle title={historia.titulo} subtitle={historia.subtitulo} />
+		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
+			<SectionTitle
+				as="h1"
+				eyebrow="Desde 1900"
+				title={historia.titulo}
+				subtitle={historia.subtitulo}
+			/>
 
-				{/* Timeline */}
-				<div className="max-w-4xl mx-auto">
-					<div className="relative">
-						{/* Linha vertical */}
-						<div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary via-secondary to-primary" />
-
-						{historia.conteudo.map((item, index) => (
-							<div
-								key={item.ano}
-								className={`relative flex items-center mb-12 ${
-									index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-								}`}
-							>
-								{/* Marcador */}
-								<div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-secondary rounded-full border-4 border-cream z-10" />
-
-								{/* Conteúdo */}
-								<div
-									className={`ml-10 md:ml-0 md:w-1/2 ${
-										index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
-									}`}
-								>
-									<div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-secondary">
-										<span className="inline-block px-3 py-1 bg-primary text-white text-sm font-bold rounded-full mb-3">
-											{item.ano}
-										</span>
-										<h3 className="text-xl font-serif font-bold text-primary mb-2">
-											{item.titulo}
-										</h3>
-										<p className="text-gray leading-relaxed">{item.texto}</p>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-
-				{/* Seção adicional */}
-				<div className="max-w-4xl mx-auto mt-16">
-					<div className="bg-primary/5 rounded-2xl p-8 md:p-12 border border-primary/10">
-						<h3 className="text-2xl font-serif font-bold text-primary mb-4 text-center">
-							Santa Ana - Nossa Padroeira
-						</h3>
-						<div className="text-gray leading-relaxed space-y-4">
-							<p>
-								Santa Ana é a mãe de Maria, a Mãe de Jesus, e avó de Nosso
-								Senhor Jesus Cristo. Seu nome, de origem hebraica, significa
-								&quot;graça&quot; ou &quot;cheia de graça&quot;.
-							</p>
-							<p>
-								Segundo a tradição cristã, Ana e seu esposo Joaquim viveram por
-								muito tempo sem filhos, o que era considerado uma grande
-								provação na cultura judaica. Porém, sua fé e perseverança foram
-								recompensadas com o nascimento de Maria, que viria a ser a Mãe
-								do Salvador.
-							</p>
-							<p>
-								Santa Ana é a padroeira das mães, das viúvas, dos mineiros e de
-								muitas cidades ao redor do mundo. Sua festa é celebrada no dia
-								26 de julho, juntamente com São Joaquim.
+			{/* Linha do tempo */}
+			<ol className="max-w-4xl">
+				{historia.conteudo.map((item) => (
+					<li
+						key={item.ano}
+						className="grid grid-cols-1 gap-2 border-t border-line py-8 sm:grid-cols-[11rem_1fr] sm:gap-8"
+					>
+						<p className="hora font-serif text-4xl leading-none text-rubrica">
+							{item.ano}
+						</p>
+						<div className="min-w-0">
+							<h2 className="text-2xl text-ink">{item.titulo}</h2>
+							<p className="mt-2 max-w-prose leading-relaxed text-muted">
+								{item.texto}
 							</p>
 						</div>
-					</div>
+					</li>
+				))}
+			</ol>
+
+			{/* Padroeira */}
+			<section className="mt-16 grid grid-cols-1 gap-8 border-t-2 border-ink pt-10 lg:grid-cols-[1fr_2fr]">
+				<div>
+					<p className="rubrica">Festa em 26 de julho</p>
+					<h2 className="mt-3 text-4xl text-ink">Sant&apos;Ana, nossa padroeira</h2>
 				</div>
-			</div>
+				<div className="max-w-prose space-y-4 font-serif text-xl leading-relaxed text-ink">
+					<p className="capitular">
+						Santa Ana é a mãe de Maria, a Mãe de Jesus, e avó de Nosso Senhor
+						Jesus Cristo. Seu nome, de origem hebraica, significa
+						&quot;graça&quot; ou &quot;cheia de graça&quot;.
+					</p>
+					<p>
+						Segundo a tradição cristã, Ana e seu esposo Joaquim viveram por
+						muito tempo sem filhos, o que era considerado uma grande provação na
+						cultura judaica. Porém, sua fé e perseverança foram recompensadas
+						com o nascimento de Maria, que viria a ser a Mãe do Salvador.
+					</p>
+					<p>
+						Santa Ana é a padroeira das mães, das viúvas, dos mineiros e de
+						muitas cidades ao redor do mundo. Sua festa é celebrada no dia 26 de
+						julho, juntamente com São Joaquim.
+					</p>
+				</div>
+			</section>
 		</div>
 	);
 }

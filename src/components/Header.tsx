@@ -1,36 +1,59 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { menuItems, paroquiaInfo } from "@/lib/data";
+import TempoLiturgicoChip from "@/components/TempoLiturgicoChip";
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const pathname = usePathname();
+
+	const isActive = (href: string) =>
+		href === "/" ? pathname === "/" : pathname.startsWith(href);
 
 	return (
-		<header className="bg-primary text-white shadow-lg sticky top-0 z-50">
-			<div className="max-w-7xl mx-auto px-4">
-				<div className="flex items-center justify-between h-20">
+		<header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
+			{/* Faixa superior */}
+			<div className="bg-band text-on-band-muted">
+				<div className="mx-auto flex h-9 max-w-6xl items-center justify-between gap-4 px-4 text-xs sm:px-6">
+					<TempoLiturgicoChip />
+					<span className="hidden sm:inline">
+						{paroquiaInfo.endereco.rua} · {paroquiaInfo.endereco.bairro}
+					</span>
+				</div>
+			</div>
+
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<div className="flex h-18 items-center justify-between gap-6">
 					{/* Logo e Nome */}
-					<Link href="/" className="flex items-center space-x-3 group">
-						<div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-primary-dark font-bold text-xl">
-							PS
-						</div>
-						<div>
-							<h1 className="text-xl font-serif font-bold group-hover:text-secondary transition-colors">
+					<Link href="/" className="group flex items-center gap-3">
+						<span className="flex h-11 w-11 items-center justify-center rounded-full border border-ouro font-serif text-2xl text-verde">
+							S
+						</span>
+						<span className="leading-tight">
+							<span className="block font-serif text-xl text-ink group-hover:text-verde">
 								{paroquiaInfo.nome}
-							</h1>
-							<p className="text-xs text-white/70">Diocese de Sua Cidade</p>
-						</div>
+							</span>
+							<span className="block text-xs text-muted">
+								Diocese de Sua Cidade
+							</span>
+						</span>
 					</Link>
 
 					{/* Menu Desktop */}
-					<nav className="hidden lg:flex items-center space-x-1">
+					<nav className="hidden items-center gap-1 lg:flex">
 						{menuItems.map((item) => (
 							<Link
 								key={item.href}
 								href={item.href}
-								className="px-4 py-2 text-sm font-medium hover:bg-primary-dark hover:text-secondary rounded-md transition-colors"
+								aria-current={isActive(item.href) ? "page" : undefined}
+								className={`border-b-2 px-2.5 py-2 text-sm transition-colors ${
+									isActive(item.href)
+										? "border-rubrica text-ink"
+										: "border-transparent text-muted hover:text-ink"
+								}`}
 							>
 								{item.label}
 							</Link>
@@ -39,12 +62,14 @@ export default function Header() {
 
 					{/* Botão Menu Mobile */}
 					<button
+						type="button"
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
-						className="lg:hidden p-2 rounded-md hover:bg-primary-dark transition-colors"
-						aria-label="Abrir menu"
+						className="rounded-md p-2 text-ink hover:bg-tint lg:hidden"
+						aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+						aria-expanded={isMenuOpen}
 					>
 						<svg
-							className="w-6 h-6"
+							className="h-6 w-6"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -53,15 +78,15 @@ export default function Header() {
 								<path
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									strokeWidth={2}
+									strokeWidth={1.5}
 									d="M6 18L18 6M6 6l12 12"
 								/>
 							) : (
 								<path
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M4 6h16M4 12h16M4 18h16"
+									strokeWidth={1.5}
+									d="M4 7h16M4 12h16M4 17h16"
 								/>
 							)}
 						</svg>
@@ -70,19 +95,23 @@ export default function Header() {
 
 				{/* Menu Mobile */}
 				{isMenuOpen && (
-					<nav className="lg:hidden pb-4 border-t border-white/20 mt-2 pt-4">
-						<div className="flex flex-col space-y-1">
+					<nav className="border-t border-line py-3 lg:hidden">
+						<ul className="flex flex-col">
 							{menuItems.map((item) => (
-								<Link
-									key={item.href}
-									href={item.href}
-									onClick={() => setIsMenuOpen(false)}
-									className="px-4 py-3 text-sm font-medium hover:bg-primary-dark hover:text-secondary rounded-md transition-colors"
-								>
-									{item.label}
-								</Link>
+								<li key={item.href}>
+									<Link
+										href={item.href}
+										onClick={() => setIsMenuOpen(false)}
+										aria-current={isActive(item.href) ? "page" : undefined}
+										className={`flex items-center justify-between py-3 font-serif text-lg ${
+											isActive(item.href) ? "text-rubrica" : "text-ink"
+										}`}
+									>
+										{item.label}
+									</Link>
+								</li>
 							))}
-						</div>
+						</ul>
 					</nav>
 				)}
 			</div>

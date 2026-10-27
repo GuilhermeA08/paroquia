@@ -11,32 +11,27 @@ export const metadata: Metadata = {
 
 export default function GaleriaPage() {
 	return (
-		<div className="py-16">
-			<div className="max-w-7xl mx-auto px-4">
-				<SectionTitle
-					title="Galeria de Fotos"
-					subtitle="Momentos especiais da nossa comunidade"
-				/>
+		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
+			<SectionTitle
+				as="h1"
+				eyebrow="Memória da comunidade"
+				title="Galeria de fotos"
+				subtitle="A igreja, as celebrações e os momentos especiais da paróquia."
+			/>
 
-				<PhotoGallery fotos={galeriaFotos} />
+			<PhotoGallery fotos={galeriaFotos} />
 
-				{/* Contribua */}
-				<div className="mt-16 bg-secondary/10 rounded-xl p-8 border border-secondary/30 text-center max-w-2xl mx-auto">
-					<h3 className="text-xl font-serif font-bold text-primary mb-2">
-						Contribua com a Galeria
-					</h3>
-					<p className="text-gray mb-4">
-						Tem fotos de eventos ou celebrações da paróquia? Envie para nós e
-						ajude a preservar a memória da nossa comunidade.
-					</p>
-					<p className="text-sm text-gray">
-						Envie suas fotos para:{" "}
-						<strong className="text-primary">
-							fotos@paroquiasantana.com.br
-						</strong>
-					</p>
-				</div>
-			</div>
+			{/* Contribua */}
+			<section className="mt-16 border-t border-line pt-8">
+				<h2 className="text-2xl text-ink">Contribua com a galeria</h2>
+				<p className="mt-2 max-w-prose text-muted">
+					Tem fotos de eventos ou celebrações da paróquia? Envie para{" "}
+					<strong className="font-semibold text-ink">
+						fotos@paroquiasantana.com.br
+					</strong>{" "}
+					e ajude a preservar a memória da comunidade.
+				</p>
+			</section>
 		</div>
 	);
 }

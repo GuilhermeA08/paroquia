@@ -5,6 +5,15 @@ interface NewsCardProps {
 	titulo: string;
 	resumo: string;
 	data: string;
+	destaque?: boolean;
+}
+
+export function formatarData(data: string) {
+	return new Date(`${data}T12:00:00`).toLocaleDateString("pt-BR", {
+		day: "2-digit",
+		month: "long",
+		year: "numeric",
+	});
 }
 
 export default function NewsCard({
@@ -12,49 +21,34 @@ export default function NewsCard({
 	titulo,
 	resumo,
 	data,
+	destaque = false,
 }: NewsCardProps) {
-	const dataFormatada = new Date(data).toLocaleDateString("pt-BR", {
-		day: "2-digit",
-		month: "long",
-		year: "numeric",
-	});
-
 	return (
-		<article className="bg-white rounded-lg border border-gray-light overflow-hidden hover:shadow-lg transition-all group">
-			{/* Imagem Placeholder */}
-			<div className="h-48 bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-				<span className="text-6xl">⛪</span>
-			</div>
-
-			{/* Conteúdo */}
-			<div className="p-6">
-				<time className="text-sm text-secondary font-medium">
-					{dataFormatada}
-				</time>
-				<h3 className="text-xl font-serif font-bold text-primary mt-2 mb-3 group-hover:text-secondary transition-colors">
+		<article className="group relative border-t border-line py-6">
+			<time dateTime={data} className="rubrica">
+				{formatarData(data)}
+			</time>
+			<h3
+				className={`mt-2 text-ink transition-colors group-hover:text-verde ${
+					destaque ? "text-3xl sm:text-4xl" : "text-2xl"
+				}`}
+			>
+				<Link href={`/noticias/${slug}`} className="after:absolute after:inset-0">
 					{titulo}
-				</h3>
-				<p className="text-gray text-sm mb-4 line-clamp-2">{resumo}</p>
-				<Link
-					href={`/noticias/${slug}`}
-					className="inline-flex items-center text-primary font-medium hover:text-secondary transition-colors"
-				>
-					Ler mais
-					<svg
-						className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
 				</Link>
-			</div>
+			</h3>
+			<p className={`mt-2 text-muted ${destaque ? "text-lg" : "line-clamp-2"}`}>
+				{resumo}
+			</p>
+			<span className="mt-3 inline-block text-sm font-semibold text-verde">
+				Ler aviso
+				<span
+					aria-hidden="true"
+					className="ml-1 inline-block transition-transform group-hover:translate-x-1"
+				>
+					→
+				</span>
+			</span>
 		</article>
 	);
 }

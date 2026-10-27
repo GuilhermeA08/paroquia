@@ -1,37 +1,65 @@
 import Link from "next/link";
 import { horariosMissas, menuItems, paroquiaInfo } from "@/lib/data";
 
+const redes = [
+	{
+		label: "Facebook",
+		href: paroquiaInfo.redesSociais.facebook,
+		path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z",
+	},
+	{
+		label: "Instagram",
+		href: paroquiaInfo.redesSociais.instagram,
+		path: "M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.413.56.218.96.478 1.38.898.42.42.68.82.898 1.38.164.422.36 1.057.413 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.413 2.227-.218.56-.478.96-.898 1.38-.42.42-.82.68-1.38.898-.422.164-1.057.36-2.227.413-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.413a3.71 3.71 0 01-1.38-.898 3.71 3.71 0 01-.898-1.38c-.164-.422-.36-1.057-.413-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.413-2.227.218-.56.478-.96.898-1.38.42-.42.82-.68 1.38-.898.422-.164 1.057-.36 2.227-.413 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.902.333 4.14.63a5.88 5.88 0 00-2.126 1.384A5.88 5.88 0 00.63 4.14C.333 4.902.13 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.058 1.278.261 2.15.558 2.913a5.88 5.88 0 001.384 2.126A5.88 5.88 0 004.14 23.37c.763.297 1.635.5 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.058 2.15-.261 2.913-.558a5.88 5.88 0 002.126-1.384 5.88 5.88 0 001.384-2.126c.297-.763.5-1.635.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.278-.261-2.15-.558-2.913a5.88 5.88 0 00-1.384-2.126A5.88 5.88 0 0019.86.63C19.098.333 18.225.13 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z",
+	},
+	{
+		label: "YouTube",
+		href: paroquiaInfo.redesSociais.youtube,
+		path: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z",
+	},
+];
+
 export default function Footer() {
 	const missaDomingo = horariosMissas.find((m) => m.dia === "Domingo");
 
 	return (
-		<footer className="bg-primary-dark text-white">
-			<div className="max-w-7xl mx-auto px-4 py-12">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+		<footer className="bg-band-deep text-on-band-muted">
+			<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
 					{/* Sobre */}
-					<div>
-						<h3 className="text-lg font-serif font-bold text-secondary mb-4">
-							{paroquiaInfo.nome}
-						</h3>
-						<p className="text-sm text-white/80 leading-relaxed">
-							Uma comunidade de fé acolhedora, dedicada a viver e compartilhar o
-							amor de Cristo através da oração, dos sacramentos e do serviço ao
-							próximo.
+					<div className="min-w-0">
+						<p className="font-serif text-2xl text-on-band">{paroquiaInfo.nome}</p>
+						<p className="mt-3 max-w-xs text-sm leading-relaxed">
+							Comunidade católica dedicada à oração, aos sacramentos e ao
+							serviço ao próximo, sob a proteção de Sant&apos;Ana.
 						</p>
+						<div className="mt-5 flex gap-4">
+							{redes.map((rede) => (
+								<a
+									key={rede.label}
+									href={rede.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={rede.label}
+									className="transition-colors hover:text-on-band"
+								>
+									<svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+										<path d={rede.path} />
+									</svg>
+								</a>
+							))}
+						</div>
 					</div>
 
-					{/* Links Rápidos */}
+					{/* Links */}
 					<div>
-						<h3 className="text-lg font-serif font-bold text-secondary mb-4">
-							Links Rápidos
-						</h3>
-						<ul className="space-y-2">
-							{menuItems.slice(0, 5).map((item) => (
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+							Páginas
+						</p>
+						<ul className="mt-4 space-y-2 text-sm">
+							{menuItems.slice(1).map((item) => (
 								<li key={item.href}>
-									<Link
-										href={item.href}
-										className="text-sm text-white/80 hover:text-secondary transition-colors"
-									>
+									<Link href={item.href} className="hover:text-on-band">
 										{item.label}
 									</Link>
 								</li>
@@ -41,99 +69,46 @@ export default function Footer() {
 
 					{/* Horários */}
 					<div>
-						<h3 className="text-lg font-serif font-bold text-secondary mb-4">
-							Missas de Domingo
-						</h3>
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+							Missas de domingo
+						</p>
 						{missaDomingo && (
-							<div className="space-y-2">
-								{missaDomingo.horarios.map((horario) => (
-									<p key={horario} className="text-sm text-white/80">
-										⛪ {horario}
-									</p>
-								))}
-							</div>
+							<p className="hora mt-4 font-serif text-2xl text-on-band">
+								{missaDomingo.horarios.join(" · ")}
+							</p>
 						)}
 						<Link
 							href="/missas"
-							className="inline-block mt-4 text-sm text-secondary hover:text-secondary-light transition-colors"
+							className="mt-3 inline-block text-sm underline decoration-ouro/60 underline-offset-4 hover:text-on-band"
 						>
-							Ver todos os horários →
+							Todos os horários
 						</Link>
 					</div>
 
 					{/* Contato */}
-					<div>
-						<h3 className="text-lg font-serif font-bold text-secondary mb-4">
+					<div className="min-w-0">
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
 							Contato
-						</h3>
-						<div className="space-y-3 text-sm text-white/80">
+						</p>
+						<address className="mt-4 space-y-1 text-sm not-italic">
 							<p>
-								📍 {paroquiaInfo.endereco.rua}, {paroquiaInfo.endereco.bairro}
+								{paroquiaInfo.endereco.rua}, {paroquiaInfo.endereco.bairro}
 							</p>
-							<p>📞 {paroquiaInfo.telefone}</p>
-							<p>✉️ {paroquiaInfo.email}</p>
-						</div>
-
-						{/* Redes Sociais */}
-						<div className="flex space-x-4 mt-4">
-							<a
-								href={paroquiaInfo.redesSociais.facebook}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-white/80 hover:text-secondary transition-colors"
-								aria-label="Facebook"
-							>
-								<svg
-									className="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-								</svg>
-							</a>
-							<a
-								href={paroquiaInfo.redesSociais.instagram}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-white/80 hover:text-secondary transition-colors"
-								aria-label="Instagram"
-							>
-								<svg
-									className="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" />
-								</svg>
-							</a>
-							<a
-								href={paroquiaInfo.redesSociais.youtube}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-white/80 hover:text-secondary transition-colors"
-								aria-label="YouTube"
-							>
-								<svg
-									className="w-6 h-6"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-								</svg>
-							</a>
-						</div>
+							<p>
+								{paroquiaInfo.endereco.cidade} – {paroquiaInfo.endereco.estado}
+							</p>
+							<p className="pt-2">{paroquiaInfo.telefone}</p>
+							<p className="break-all">{paroquiaInfo.email}</p>
+						</address>
 					</div>
 				</div>
 
-				{/* Copyright */}
-				<div className="border-t border-white/20 mt-8 pt-8 text-center">
-					<p className="text-sm text-white/60">
-						© {new Date().getFullYear()} {paroquiaInfo.nome}. Todos os direitos
-						reservados.
+				<div className="mt-12 flex flex-col gap-3 border-t border-on-band/15 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+					<p>
+						© {new Date().getFullYear()} {paroquiaInfo.nome}
 					</p>
-					<p className="text-xs text-white/40 mt-2">
-						&quot;Ide por todo o mundo e pregai o Evangelho a toda
-						criatura.&quot; - Mc 16,15
+					<p className="font-serif text-sm italic">
+						“Ide por todo o mundo e pregai o Evangelho a toda criatura.” Mc 16,15
 					</p>
 				</div>
 			</div>

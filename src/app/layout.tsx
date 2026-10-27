@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Open_Sans, Playfair_Display } from "next/font/google";
+import { EB_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-const playfair = Playfair_Display({
-	variable: "--font-playfair",
+const garamond = EB_Garamond({
+	variable: "--font-garamond",
 	subsets: ["latin"],
 	display: "swap",
 });
 
-const openSans = Open_Sans({
-	variable: "--font-open-sans",
+const sourceSans = Source_Sans_3({
+	variable: "--font-source",
 	subsets: ["latin"],
 	display: "swap",
 });
@@ -45,7 +45,7 @@ export default function RootLayout({
 	return (
 		<html lang="pt-BR">
 			<body
-				className={`${playfair.variable} ${openSans.variable} antialiased min-h-screen flex flex-col`}
+				className={`${garamond.variable} ${sourceSans.variable} antialiased min-h-screen flex flex-col`}
 			>
 				<Header />
 				<main className="flex-1">{children}</main>
