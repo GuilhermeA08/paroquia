@@ -88,7 +88,9 @@ export default function LocalizacaoPage() {
 					</div>
 					<div className="border-y border-line py-5">
 						<dt className="rubrica">Secretaria</dt>
-						<dd className="mt-2 text-lg text-ink">{outrosHorarios.secretaria}</dd>
+						<dd className="mt-2 text-lg text-ink">
+							{outrosHorarios.secretaria}
+						</dd>
 					</div>
 				</dl>
 			</div>

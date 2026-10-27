@@ -18,9 +18,7 @@ export default function SectionTitle({
 			{eyebrow && <p className="rubrica mb-3">{eyebrow}</p>}
 			<Heading
 				className={`text-ink ${
-					Heading === "h1"
-						? "text-4xl sm:text-5xl"
-						: "text-3xl sm:text-4xl"
+					Heading === "h1" ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"
 				}`}
 			>
 				{title}

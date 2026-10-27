@@ -42,7 +42,9 @@ export default function HistoriaPage() {
 			<section className="mt-16 grid grid-cols-1 gap-8 border-t-2 border-ink pt-10 lg:grid-cols-[1fr_2fr]">
 				<div>
 					<p className="rubrica">Festa em 26 de julho</p>
-					<h2 className="mt-3 text-4xl text-ink">Sant&apos;Ana, nossa padroeira</h2>
+					<h2 className="mt-3 text-4xl text-ink">
+						Sant&apos;Ana, nossa padroeira
+					</h2>
 				</div>
 				<div className="max-w-prose space-y-4 font-serif text-xl leading-relaxed text-ink">
 					<p className="capitular">

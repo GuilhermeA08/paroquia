@@ -47,8 +47,7 @@ export default function Home() {
 						</h1>
 						<p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
 							Uma comunidade de fé, esperança e amor ao próximo em{" "}
-							{paroquiaInfo.endereco.cidade}. As portas estão abertas para
-							você.
+							{paroquiaInfo.endereco.cidade}. As portas estão abertas para você.
 						</p>
 						<div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
 							<Link
@@ -157,7 +156,10 @@ export default function Home() {
 				<ul className="grid grid-cols-1 gap-x-12 md:grid-cols-2">
 					{indice.map((item) => (
 						<li key={item.href} className="border-t border-line">
-							<Link href={item.href} className="group flex items-baseline gap-3 py-4">
+							<Link
+								href={item.href}
+								className="group flex items-baseline gap-3 py-4"
+							>
 								<span className="min-w-0">
 									<span className="block font-serif text-2xl text-ink group-hover:text-verde">
 										{item.titulo}

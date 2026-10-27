@@ -83,7 +83,9 @@ export default function PixDonation({
 				<blockquote className="mt-6 font-serif text-lg text-muted italic">
 					“Cada um dê conforme determinou em seu coração, não com pesar ou por
 					obrigação, pois Deus ama quem dá com alegria.”
-					<footer className="mt-1 text-sm not-italic text-rubrica">2Cor 9,7</footer>
+					<footer className="mt-1 text-sm not-italic text-rubrica">
+						2Cor 9,7
+					</footer>
 				</blockquote>
 			</div>
 		</div>

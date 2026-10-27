@@ -54,7 +54,10 @@ export default function DownloadsPage() {
 						<h3 className="text-xl text-verde">Uso permitido</h3>
 						<ul className="mt-3">
 							{permitido.map((item) => (
-								<li key={item} className="border-t border-line py-2.5 text-muted">
+								<li
+									key={item}
+									className="border-t border-line py-2.5 text-muted"
+								>
 									{item}
 								</li>
 							))}
@@ -64,7 +67,10 @@ export default function DownloadsPage() {
 						<h3 className="text-xl text-rubrica">Uso não permitido</h3>
 						<ul className="mt-3">
 							{naoPermitido.map((item) => (
-								<li key={item} className="border-t border-line py-2.5 text-muted">
+								<li
+									key={item}
+									className="border-t border-line py-2.5 text-muted"
+								>
 									{item}
 								</li>
 							))}

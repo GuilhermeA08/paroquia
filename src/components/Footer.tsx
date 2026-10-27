@@ -28,7 +28,9 @@ export default function Footer() {
 				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
 					{/* Sobre */}
 					<div className="min-w-0">
-						<p className="font-serif text-2xl text-on-band">{paroquiaInfo.nome}</p>
+						<p className="font-serif text-2xl text-on-band">
+							{paroquiaInfo.nome}
+						</p>
 						<p className="mt-3 max-w-xs text-sm leading-relaxed">
 							Comunidade católica dedicada à oração, aos sacramentos e ao
 							serviço ao próximo, sob a proteção de Sant&apos;Ana.
@@ -43,7 +45,11 @@ export default function Footer() {
 									aria-label={rede.label}
 									className="transition-colors hover:text-on-band"
 								>
-									<svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+									<svg
+										className="h-5 w-5"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+									>
 										<path d={rede.path} />
 									</svg>
 								</a>
@@ -108,7 +114,8 @@ export default function Footer() {
 						© {new Date().getFullYear()} {paroquiaInfo.nome}
 					</p>
 					<p className="font-serif text-sm italic">
-						“Ide por todo o mundo e pregai o Evangelho a toda criatura.” Mc 16,15
+						“Ide por todo o mundo e pregai o Evangelho a toda criatura.” Mc
+						16,15
 					</p>
 				</div>
 			</div>

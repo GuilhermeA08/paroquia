@@ -99,8 +99,7 @@ export function proximaMissa(agora: Date): ProximaMissa | null {
 		});
 		if (!horario) continue;
 
-		const quando =
-			offset === 0 ? "Hoje" : offset === 1 ? "Amanhã" : missa.dia;
+		const quando = offset === 0 ? "Hoje" : offset === 1 ? "Amanhã" : missa.dia;
 		return { quando, horario, descricao: missa.descricao };
 	}
 	return null;

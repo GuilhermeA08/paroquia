@@ -15,7 +15,9 @@ export default function WeekSchedule() {
 						<p className="font-serif text-xl text-ink">
 							{missa.dia.replace("-feira", "")}
 						</p>
-						<p className={`text-sm ${missa.destaque ? "text-rubrica" : "text-muted"}`}>
+						<p
+							className={`text-sm ${missa.destaque ? "text-rubrica" : "text-muted"}`}
+						>
 							{missa.descricao}
 						</p>
 					</div>

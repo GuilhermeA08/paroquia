@@ -33,7 +33,10 @@ export default function NewsCard({
 					destaque ? "text-3xl sm:text-4xl" : "text-2xl"
 				}`}
 			>
-				<Link href={`/noticias/${slug}`} className="after:absolute after:inset-0">
+				<Link
+					href={`/noticias/${slug}`}
+					className="after:absolute after:inset-0"
+				>
 					{titulo}
 				</Link>
 			</h3>
