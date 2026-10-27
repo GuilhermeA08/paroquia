@@ -1,6 +1,6 @@
 // Calendário litúrgico simplificado: tempo do ano e cor, e próxima missa
 
-import { horariosMissas } from "@/lib/data";
+import { horariosMissas, type Missa } from "@/lib/data";
 
 export interface TempoLiturgico {
 	nome: string;
@@ -69,38 +69,52 @@ export function tempoLiturgico(agora: Date): TempoLiturgico {
 	return TEMPOS.comum;
 }
 
-const DIAS = [
-	"Domingo",
-	"Segunda-feira",
-	"Terça-feira",
-	"Quarta-feira",
-	"Quinta-feira",
-	"Sexta-feira",
-	"Sábado",
-];
-
 export interface ProximaMissa {
 	quando: string;
 	horario: string;
 	descricao: string;
 }
 
+function celebraNoDia(missa: Missa, data: Date) {
+	if (data.getDay() !== missa.diaSemana) return false;
+	return missa.recorrencia === "semanal" || data.getDate() <= 7;
+}
+
+function minutos(horario: string) {
+	const [hora, minuto] = horario.split(":").map(Number);
+	return hora * 60 + minuto;
+}
+
 export function proximaMissa(agora: Date): ProximaMissa | null {
 	const minutosAgora = agora.getHours() * 60 + agora.getMinutes();
 
-	for (let offset = 0; offset < 8; offset++) {
-		const indice = (agora.getDay() + offset) % 7;
-		const missa = horariosMissas.find((m) => m.dia === DIAS[indice]);
-		if (!missa) continue;
+	// Procura nas próximas seis semanas, para alcançar a primeira sexta do mês
+	for (let offset = 0; offset < 42; offset++) {
+		const data = somarDias(agora, offset);
+		const candidatas = horariosMissas
+			.filter((missa) => celebraNoDia(missa, data))
+			.flatMap((missa) => missa.horarios.map((horario) => ({ horario, missa })))
+			.filter(({ horario }) => offset > 0 || minutos(horario) > minutosAgora)
+			.sort((a, b) => minutos(a.horario) - minutos(b.horario));
 
-		const horario = missa.horarios.find((h) => {
-			const [hora, minuto] = h.split(":").map(Number);
-			return offset > 0 || hora * 60 + minuto > minutosAgora;
-		});
-		if (!horario) continue;
+		const proxima = candidatas[0];
+		if (!proxima) continue;
 
-		const quando = offset === 0 ? "Hoje" : offset === 1 ? "Amanhã" : missa.dia;
-		return { quando, horario, descricao: missa.descricao };
+		const quando =
+			offset === 0
+				? "Hoje"
+				: offset === 1
+					? "Amanhã"
+					: data.toLocaleDateString("pt-BR", {
+							weekday: "long",
+							day: "numeric",
+							month: "long",
+						});
+		return {
+			quando: quando.charAt(0).toUpperCase() + quando.slice(1),
+			horario: proxima.horario,
+			descricao: proxima.missa.descricao,
+		};
 	}
 	return null;
 }

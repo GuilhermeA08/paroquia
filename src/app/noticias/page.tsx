@@ -4,9 +4,9 @@ import SectionTitle from "@/components/SectionTitle";
 import { noticias } from "@/lib/data";
 
 export const metadata: Metadata = {
-	title: "Notícias | Paróquia de Santana",
+	title: "Notícias | Paróquia de Sant’Ana",
 	description:
-		"Acompanhe as últimas notícias, eventos e avisos da Paróquia de Santana.",
+		"Acompanhe as últimas notícias, eventos e avisos da Paróquia de Sant’Ana.",
 };
 
 export default function NoticiasPage() {

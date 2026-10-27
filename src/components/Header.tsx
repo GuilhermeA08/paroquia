@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -16,11 +17,12 @@ export default function Header() {
 	return (
 		<header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
 			{/* Faixa superior */}
-			<div className="bg-band text-on-band-muted">
+			<div className="bg-tint text-muted">
 				<div className="mx-auto flex h-9 max-w-6xl items-center justify-between gap-4 px-4 text-xs sm:px-6">
 					<TempoLiturgicoChip />
 					<span className="hidden sm:inline">
-						{paroquiaInfo.endereco.rua} · {paroquiaInfo.endereco.bairro}
+						{paroquiaInfo.endereco.rua} · {paroquiaInfo.endereco.cidade}/
+						{paroquiaInfo.endereco.estado}
 					</span>
 				</div>
 			</div>
@@ -29,15 +31,21 @@ export default function Header() {
 				<div className="flex h-18 items-center justify-between gap-6">
 					{/* Logo e Nome */}
 					<Link href="/" className="group flex items-center gap-3">
-						<span className="flex h-11 w-11 items-center justify-center rounded-full border border-ouro font-serif text-2xl text-verde">
-							S
-						</span>
+						<Image
+							src="/logos/brasao-paroquia-web.png"
+							alt=""
+							width={304}
+							height={512}
+							priority
+							className="h-12 w-auto"
+						/>
 						<span className="leading-tight">
-							<span className="block font-serif text-xl text-ink group-hover:text-verde">
+							<span className="block font-serif text-xl text-ink group-hover:text-primary">
 								{paroquiaInfo.nome}
 							</span>
 							<span className="block text-xs text-muted">
-								Diocese de Sua Cidade
+								{paroquiaInfo.endereco.cidade}/{paroquiaInfo.endereco.estado} ·{" "}
+								{paroquiaInfo.diocese}
 							</span>
 						</span>
 					</Link>
@@ -51,7 +59,7 @@ export default function Header() {
 								aria-current={isActive(item.href) ? "page" : undefined}
 								className={`border-b-2 px-2.5 py-2 text-sm transition-colors ${
 									isActive(item.href)
-										? "border-rubrica text-ink"
+										? "border-accent text-ink"
 										: "border-transparent text-muted hover:text-ink"
 								}`}
 							>
@@ -104,7 +112,7 @@ export default function Header() {
 										onClick={() => setIsMenuOpen(false)}
 										aria-current={isActive(item.href) ? "page" : undefined}
 										className={`flex items-center justify-between py-3 font-serif text-lg ${
-											isActive(item.href) ? "text-rubrica" : "text-ink"
+											isActive(item.href) ? "text-accent" : "text-ink"
 										}`}
 									>
 										{item.label}

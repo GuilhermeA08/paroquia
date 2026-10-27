@@ -12,7 +12,7 @@ export default function ProximaMissa() {
 
 	return (
 		<aside className="rounded-sm border border-line bg-surface p-6 shadow-[0_1px_0_var(--line),0_12px_32px_-20px_rgb(0_0_0/0.25)] sm:p-8">
-			<p className="rubrica">Próxima missa</p>
+			<p className="eyebrow">Próxima missa</p>
 
 			<div className="mt-5 min-h-[7.5rem]">
 				{missa ? (
@@ -36,7 +36,7 @@ export default function ProximaMissa() {
 			<dl className="mt-6 space-y-3 border-t border-line pt-5 text-sm">
 				<div className="flex justify-between gap-4">
 					<dt className="text-muted">Local</dt>
-					<dd className="text-right text-ink">{paroquiaInfo.endereco.rua}</dd>
+					<dd className="text-right text-ink">{paroquiaInfo.igreja}</dd>
 				</div>
 				{tempo && (
 					<div className="flex justify-between gap-4">
@@ -55,7 +55,7 @@ export default function ProximaMissa() {
 
 			<Link
 				href="/localizacao"
-				className="mt-6 inline-flex text-sm font-semibold text-verde underline decoration-ouro underline-offset-4 hover:decoration-2"
+				className="mt-6 inline-flex text-sm font-semibold text-primary underline decoration-gold underline-offset-4 hover:decoration-2"
 			>
 				Como chegar
 			</Link>

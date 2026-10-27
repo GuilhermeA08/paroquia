@@ -25,11 +25,11 @@ export default function NewsCard({
 }: NewsCardProps) {
 	return (
 		<article className="group relative border-t border-line py-6">
-			<time dateTime={data} className="rubrica">
+			<time dateTime={data} className="eyebrow">
 				{formatarData(data)}
 			</time>
 			<h3
-				className={`mt-2 text-ink transition-colors group-hover:text-verde ${
+				className={`mt-2 text-ink transition-colors group-hover:text-primary ${
 					destaque ? "text-3xl sm:text-4xl" : "text-2xl"
 				}`}
 			>
@@ -43,7 +43,7 @@ export default function NewsCard({
 			<p className={`mt-2 text-muted ${destaque ? "text-lg" : "line-clamp-2"}`}>
 				{resumo}
 			</p>
-			<span className="mt-3 inline-block text-sm font-semibold text-verde">
+			<span className="mt-3 inline-block text-sm font-semibold text-primary">
 				Ler aviso
 				<span
 					aria-hidden="true"

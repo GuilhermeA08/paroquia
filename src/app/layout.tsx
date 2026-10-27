@@ -17,21 +17,24 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-	title: "Paróquia de Santana",
+	title: "Paróquia de Sant’Ana",
 	description:
-		"Site oficial da Paróquia de Santana. Conheça nossa história, horários de missas, localização e muito mais.",
+		"Site oficial da Paróquia de Sant’Ana de Campo Grande/RN, Diocese de Mossoró. Conheça nossa história, horários de missas, localização e muito mais.",
 	keywords: [
 		"paróquia",
-		"santana",
+		"sant’ana",
+		"campo grande",
+		"rio grande do norte",
+		"diocese de mossoró",
 		"igreja",
 		"católica",
 		"missa",
 		"comunidade",
 	],
-	authors: [{ name: "Paróquia de Santana" }],
+	authors: [{ name: "Paróquia de Sant’Ana" }],
 	openGraph: {
-		title: "Paróquia de Santana",
-		description: "Site oficial da Paróquia de Santana",
+		title: "Paróquia de Sant’Ana",
+		description: "Site oficial da Paróquia de Sant’Ana",
 		type: "website",
 		locale: "pt_BR",
 	},

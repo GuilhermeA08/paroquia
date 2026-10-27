@@ -4,9 +4,9 @@ import SectionTitle from "@/components/SectionTitle";
 import { logosDownload } from "@/lib/data";
 
 export const metadata: Metadata = {
-	title: "Downloads | Paróquia de Santana",
+	title: "Downloads | Paróquia de Sant’Ana",
 	description:
-		"Baixe logos e materiais oficiais da Paróquia de Santana em diferentes formatos.",
+		"Baixe logos e materiais oficiais da Paróquia de Sant’Ana em diferentes formatos.",
 };
 
 const permitido = [
@@ -30,10 +30,10 @@ export default function DownloadsPage() {
 				as="h1"
 				eyebrow="Identidade visual"
 				title="Downloads"
-				subtitle="Logos e materiais oficiais da paróquia."
+				subtitle="Brasão oficial da paróquia para uso em materiais da comunidade."
 			/>
 
-			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			<div className="grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">
 				{logosDownload.map((logo) => (
 					<DownloadCard
 						key={logo.id}
@@ -51,7 +51,7 @@ export default function DownloadsPage() {
 				<h2 className="text-3xl text-ink">Diretrizes de uso</h2>
 				<div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2">
 					<div>
-						<h3 className="text-xl text-verde">Uso permitido</h3>
+						<h3 className="text-xl text-primary">Uso permitido</h3>
 						<ul className="mt-3">
 							{permitido.map((item) => (
 								<li
@@ -64,7 +64,7 @@ export default function DownloadsPage() {
 						</ul>
 					</div>
 					<div>
-						<h3 className="text-xl text-rubrica">Uso não permitido</h3>
+						<h3 className="text-xl text-accent">Uso não permitido</h3>
 						<ul className="mt-3">
 							{naoPermitido.map((item) => (
 								<li

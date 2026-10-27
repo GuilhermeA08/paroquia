@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import NewsCard from "@/components/NewsCard";
 import ProximaMissa from "@/components/ProximaMissa";
@@ -8,7 +9,7 @@ const indice = [
 	{
 		href: "/historia",
 		titulo: "Nossa história",
-		texto: "Da capela de 1900 à igreja de hoje",
+		texto: "Da capela de 1766 à paróquia de hoje",
 	},
 	{
 		href: "/localizacao",
@@ -23,7 +24,7 @@ const indice = [
 	{
 		href: "/downloads",
 		titulo: "Downloads",
-		texto: "Logos e materiais oficiais",
+		texto: "Brasão e materiais oficiais",
 	},
 	{
 		href: "/doacoes",
@@ -34,6 +35,11 @@ const indice = [
 
 export default function Home() {
 	const [principal, ...outras] = noticias.slice(0, 3);
+	const outros = [
+		["Confissão", outrosHorarios.confissao],
+		["Adoração ao Santíssimo", outrosHorarios.adoracao],
+		["Secretaria", outrosHorarios.secretaria],
+	].filter((item): item is [string, string] => Boolean(item[1]));
 
 	return (
 		<div>
@@ -41,9 +47,20 @@ export default function Home() {
 			<section className="border-b border-line">
 				<div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.35fr_1fr]">
 					<div className="min-w-0">
-						<p className="rubrica">Sancta Anna, ora pro nobis</p>
+						<Image
+							src="/logos/brasao-paroquia-web.png"
+							alt="Brasão da Paróquia de Sant’Ana de Campo Grande"
+							width={304}
+							height={512}
+							priority
+							className="mb-8 h-40 w-auto"
+						/>
+						<p className="eyebrow">
+							{paroquiaInfo.endereco.cidade}/{paroquiaInfo.endereco.estado} ·
+							desde {paroquiaInfo.fundacao}
+						</p>
 						<h1 className="mt-5 text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
-							Paróquia de <em className="text-verde">Santana</em>
+							Paróquia de <em className="text-primary">Sant’Ana</em>
 						</h1>
 						<p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
 							Uma comunidade de fé, esperança e amor ao próximo em{" "}
@@ -52,13 +69,13 @@ export default function Home() {
 						<div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
 							<Link
 								href="/missas"
-								className="bg-verde px-6 py-3 font-semibold text-paper transition-opacity hover:opacity-90"
+								className="bg-primary px-6 py-3 font-semibold text-paper transition-opacity hover:opacity-90"
 							>
 								Horários das missas
 							</Link>
 							<Link
 								href="/historia"
-								className="font-semibold text-ink underline decoration-ouro underline-offset-[6px] hover:text-verde"
+								className="font-semibold text-ink underline decoration-gold underline-offset-[6px] hover:text-primary"
 							>
 								Conheça nossa história
 							</Link>
@@ -73,35 +90,31 @@ export default function Home() {
 			<section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
 				<div className="mb-8 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="rubrica">Ordo semanal</p>
+						<p className="eyebrow">Celebrações</p>
 						<h2 className="mt-3 text-3xl text-ink sm:text-4xl">
-							Missas da semana
+							Horários das missas
 						</h2>
 					</div>
 					<Link
 						href="/missas"
-						className="text-sm font-semibold text-verde underline decoration-ouro underline-offset-4"
+						className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
 					>
-						Confissões e adoração
+						Ver todos os horários
 					</Link>
 				</div>
 
 				<WeekSchedule />
 
-				<dl className="mt-8 grid grid-cols-1 gap-6 text-sm sm:grid-cols-3">
-					<div>
-						<dt className="font-semibold text-ink">Confissão</dt>
-						<dd className="mt-1 text-muted">{outrosHorarios.confissao}</dd>
-					</div>
-					<div>
-						<dt className="font-semibold text-ink">Adoração ao Santíssimo</dt>
-						<dd className="mt-1 text-muted">{outrosHorarios.adoracao}</dd>
-					</div>
-					<div>
-						<dt className="font-semibold text-ink">Secretaria</dt>
-						<dd className="mt-1 text-muted">{outrosHorarios.secretaria}</dd>
-					</div>
-				</dl>
+				{outros.length > 0 && (
+					<dl className="mt-8 grid grid-cols-1 gap-6 text-sm sm:grid-cols-3">
+						{outros.map(([titulo, texto]) => (
+							<div key={titulo}>
+								<dt className="font-semibold text-ink">{titulo}</dt>
+								<dd className="mt-1 text-muted">{texto}</dd>
+							</div>
+						))}
+					</dl>
+				)}
 			</section>
 
 			{/* Avisos */}
@@ -109,14 +122,14 @@ export default function Home() {
 				<div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
 					<div className="mb-8 flex flex-wrap items-end justify-between gap-4">
 						<div>
-							<p className="rubrica">Avisos paroquiais</p>
+							<p className="eyebrow">Avisos paroquiais</p>
 							<h2 className="mt-3 text-3xl text-ink sm:text-4xl">
 								Últimas notícias
 							</h2>
 						</div>
 						<Link
 							href="/noticias"
-							className="text-sm font-semibold text-verde underline decoration-ouro underline-offset-4"
+							className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
 						>
 							Todos os avisos
 						</Link>
@@ -149,7 +162,7 @@ export default function Home() {
 
 			{/* Índice */}
 			<section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
-				<p className="rubrica">Índice</p>
+				<p className="eyebrow">Índice</p>
 				<h2 className="mt-3 mb-8 text-3xl text-ink sm:text-4xl">
 					Conheça a paróquia
 				</h2>
@@ -161,14 +174,14 @@ export default function Home() {
 								className="group flex items-baseline gap-3 py-4"
 							>
 								<span className="min-w-0">
-									<span className="block font-serif text-2xl text-ink group-hover:text-verde">
+									<span className="block font-serif text-2xl text-ink group-hover:text-primary">
 										{item.titulo}
 									</span>
 									<span className="block text-sm text-muted">{item.texto}</span>
 								</span>
 								<span className="pontilhado" aria-hidden="true" />
 								<span
-									className="text-rubrica transition-transform group-hover:translate-x-1"
+									className="text-accent transition-transform group-hover:translate-x-1"
 									aria-hidden="true"
 								>
 									→
@@ -180,23 +193,23 @@ export default function Home() {
 			</section>
 
 			{/* Doações */}
-			<section className="bg-band text-on-band">
+			<section className="bg-tint text-ink">
 				<div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 py-16 sm:px-6 md:grid-cols-[1.5fr_auto]">
 					<div>
-						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
 							Dízimo e ofertas
 						</p>
 						<p className="mt-4 max-w-2xl font-serif text-3xl leading-snug sm:text-4xl">
 							“Deus ama quem dá com alegria.”
 						</p>
-						<p className="mt-3 max-w-xl text-on-band-muted">
+						<p className="mt-3 max-w-xl text-muted">
 							Sua contribuição mantém a igreja, a catequese e as obras de
 							caridade da comunidade.
 						</p>
 					</div>
 					<Link
 						href="/doacoes"
-						className="justify-self-start border border-on-band/60 px-6 py-3 font-semibold transition-colors hover:bg-on-band hover:text-band md:justify-self-end"
+						className="justify-self-start bg-primary px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90 md:justify-self-end"
 					>
 						Contribuir pelo Pix
 					</Link>

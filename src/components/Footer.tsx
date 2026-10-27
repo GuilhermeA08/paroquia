@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { horariosMissas, menuItems, paroquiaInfo } from "@/lib/data";
 
@@ -17,24 +18,36 @@ const redes = [
 		href: paroquiaInfo.redesSociais.youtube,
 		path: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z",
 	},
-];
+].filter((rede) => rede.href);
 
 export default function Footer() {
 	const missaDomingo = horariosMissas.find((m) => m.dia === "Domingo");
 
 	return (
-		<footer className="bg-band-deep text-on-band-muted">
+		<footer className="border-t border-line bg-surface text-muted">
 			<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
 				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
 					{/* Sobre */}
 					<div className="min-w-0">
-						<p className="font-serif text-2xl text-on-band">
-							{paroquiaInfo.nome}
-						</p>
+						<p className="font-serif text-2xl text-ink">{paroquiaInfo.nome}</p>
 						<p className="mt-3 max-w-xs text-sm leading-relaxed">
 							Comunidade católica dedicada à oração, aos sacramentos e ao
-							serviço ao próximo, sob a proteção de Sant&apos;Ana.
+							serviço ao próximo, sob a proteção de Sant’Ana.
 						</p>
+						<div className="mt-5 flex items-center gap-3">
+							<Image
+								src="/logos/brasao-diocese-mossoro.png"
+								alt=""
+								width={211}
+								height={256}
+								className="h-12 w-auto"
+							/>
+							<p className="text-sm">
+								Paróquia da
+								<br />
+								<span className="text-ink">{paroquiaInfo.diocese}</span>
+							</p>
+						</div>
 						<div className="mt-5 flex gap-4">
 							{redes.map((rede) => (
 								<a
@@ -43,7 +56,7 @@ export default function Footer() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={rede.label}
-									className="transition-colors hover:text-on-band"
+									className="transition-colors hover:text-ink"
 								>
 									<svg
 										className="h-5 w-5"
@@ -59,13 +72,13 @@ export default function Footer() {
 
 					{/* Links */}
 					<div>
-						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
 							Páginas
 						</p>
 						<ul className="mt-4 space-y-2 text-sm">
 							{menuItems.slice(1).map((item) => (
 								<li key={item.href}>
-									<Link href={item.href} className="hover:text-on-band">
+									<Link href={item.href} className="hover:text-ink">
 										{item.label}
 									</Link>
 								</li>
@@ -75,17 +88,17 @@ export default function Footer() {
 
 					{/* Horários */}
 					<div>
-						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
 							Missas de domingo
 						</p>
 						{missaDomingo && (
-							<p className="hora mt-4 font-serif text-2xl text-on-band">
+							<p className="hora mt-4 font-serif text-2xl text-ink">
 								{missaDomingo.horarios.join(" · ")}
 							</p>
 						)}
 						<Link
 							href="/missas"
-							className="mt-3 inline-block text-sm underline decoration-ouro/60 underline-offset-4 hover:text-on-band"
+							className="mt-3 inline-block text-sm underline decoration-gold/60 underline-offset-4 hover:text-ink"
 						>
 							Todos os horários
 						</Link>
@@ -93,23 +106,31 @@ export default function Footer() {
 
 					{/* Contato */}
 					<div className="min-w-0">
-						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-ouro">
+						<p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
 							Contato
 						</p>
 						<address className="mt-4 space-y-1 text-sm not-italic">
+							<p className="text-ink">{paroquiaInfo.igreja}</p>
 							<p>
 								{paroquiaInfo.endereco.rua}, {paroquiaInfo.endereco.bairro}
 							</p>
 							<p>
 								{paroquiaInfo.endereco.cidade} – {paroquiaInfo.endereco.estado}
 							</p>
-							<p className="pt-2">{paroquiaInfo.telefone}</p>
-							<p className="break-all">{paroquiaInfo.email}</p>
+							{paroquiaInfo.telefone && (
+								<p className="pt-2">{paroquiaInfo.telefone}</p>
+							)}
+							{paroquiaInfo.paroco && (
+								<p className="pt-2">Pároco: {paroquiaInfo.paroco}</p>
+							)}
+							{paroquiaInfo.email && (
+								<p className="break-all">{paroquiaInfo.email}</p>
+							)}
 						</address>
 					</div>
 				</div>
 
-				<div className="mt-12 flex flex-col gap-3 border-t border-on-band/15 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+				<div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
 					<p>
 						© {new Date().getFullYear()} {paroquiaInfo.nome}
 					</p>

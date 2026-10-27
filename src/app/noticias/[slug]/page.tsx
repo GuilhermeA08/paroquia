@@ -22,12 +22,12 @@ export async function generateMetadata({
 
 	if (!noticia) {
 		return {
-			title: "Notícia não encontrada | Paróquia de Santana",
+			title: "Notícia não encontrada | Paróquia de Sant’Ana",
 		};
 	}
 
 	return {
-		title: `${noticia.titulo} | Paróquia de Santana`,
+		title: `${noticia.titulo} | Paróquia de Sant’Ana`,
 		description: noticia.resumo,
 	};
 }
@@ -64,7 +64,7 @@ export default async function NoticiaPage({ params }: PageProps) {
 
 				{/* Header */}
 				<header className="border-b border-line pb-8">
-					<time dateTime={noticia.data} className="rubrica">
+					<time dateTime={noticia.data} className="eyebrow">
 						{formatarData(noticia.data)}
 					</time>
 					<h1 className="mt-3 text-4xl leading-tight text-ink sm:text-5xl">
@@ -106,7 +106,7 @@ export default async function NoticiaPage({ params }: PageProps) {
 				{/* Voltar */}
 				<Link
 					href="/noticias"
-					className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-verde underline decoration-ouro underline-offset-4"
+					className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
 				>
 					<span aria-hidden="true">←</span>
 					Voltar para os avisos

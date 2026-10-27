@@ -4,9 +4,9 @@ import SectionTitle from "@/components/SectionTitle";
 import { dadosPix } from "@/lib/data";
 
 export const metadata: Metadata = {
-	title: "Doações | Paróquia de Santana",
+	title: "Doações | Paróquia de Sant’Ana",
 	description:
-		"Contribua com a Paróquia de Santana. Faça sua doação via Pix de forma rápida e segura.",
+		"Contribua com a Paróquia de Sant’Ana. Faça sua doação via Pix de forma rápida e segura.",
 };
 
 const destinos = [
@@ -26,12 +26,26 @@ export default function DoacoesPage() {
 				subtitle="Sua contribuição ajuda a manter a missão da paróquia."
 			/>
 
-			<PixDonation
-				chave={dadosPix.chave}
-				tipoChave={dadosPix.tipoChave}
-				nomeBeneficiario={dadosPix.nomeBeneficiario}
-				qrCodeImagem={dadosPix.qrCodeImagem}
-			/>
+			{dadosPix.chave ? (
+				<PixDonation
+					chave={dadosPix.chave}
+					chaveFormatada={dadosPix.chaveFormatada}
+					tipoChave={dadosPix.tipoChave}
+					nomeBeneficiario={dadosPix.nomeBeneficiario}
+					qrCodeImagem={dadosPix.qrCodeImagem}
+				/>
+			) : (
+				<div className="border border-line bg-tint p-6 sm:p-8">
+					<p className="eyebrow">Pix</p>
+					<p className="mt-3 font-serif text-3xl text-ink">
+						A chave Pix será publicada em breve
+					</p>
+					<p className="mt-2 max-w-prose text-muted">
+						Enquanto isso, você pode contribuir durante as missas ou na
+						secretaria paroquial.
+					</p>
+				</div>
+			)}
 
 			<div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
 				{/* Transparência */}
@@ -43,7 +57,7 @@ export default function DoacoesPage() {
 								key={destino}
 								className="flex gap-3 border-t border-line py-3 text-ink"
 							>
-								<span className="text-rubrica" aria-hidden="true">
+								<span className="text-accent" aria-hidden="true">
 									✠
 								</span>
 								{destino}

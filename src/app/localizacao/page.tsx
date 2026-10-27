@@ -3,30 +3,14 @@ import SectionTitle from "@/components/SectionTitle";
 import { outrosHorarios, paroquiaInfo } from "@/lib/data";
 
 export const metadata: Metadata = {
-	title: "Localização | Paróquia de Santana",
-	description: `Encontre a Paróquia de Santana. Endereço: ${paroquiaInfo.endereco.rua}, ${paroquiaInfo.endereco.bairro}, ${paroquiaInfo.endereco.cidade}.`,
+	title: "Localização | Paróquia de Sant’Ana",
+	description: `Encontre a Paróquia de Sant’Ana: ${paroquiaInfo.endereco.rua}, ${paroquiaInfo.endereco.cidade}/${paroquiaInfo.endereco.estado}.`,
 };
 
-const comoChegar = [
-	{
-		titulo: "De ônibus",
-		texto:
-			"Consulte o terminal mais próximo para saber as linhas que passam perto da igreja.",
-	},
-	{
-		titulo: "De carro",
-		texto:
-			"Estacionamento disponível na rua. Aos domingos há vagas reservadas para idosos e gestantes.",
-	},
-	{
-		titulo: "A pé",
-		texto:
-			"Fácil acesso pelo centro da cidade. Siga as placas indicativas para a Igreja de Santana.",
-	},
-];
+const consultaMapa = encodeURIComponent(paroquiaInfo.plusCode);
 
 export default function LocalizacaoPage() {
-	const { endereco } = paroquiaInfo;
+	const { endereco, telefone, email, igreja, paroco } = paroquiaInfo;
 
 	return (
 		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
@@ -34,79 +18,90 @@ export default function LocalizacaoPage() {
 				as="h1"
 				eyebrow="Visite-nos"
 				title="Localização"
-				subtitle="Encontre a igreja e faça-nos uma visita."
+				subtitle={`A Igreja Matriz de Sant’Ana fica em ${endereco.cidade}, no Rio Grande do Norte.`}
 			/>
 
 			<div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr]">
 				{/* Mapa */}
 				<div className="order-2 min-h-[380px] overflow-hidden border border-line bg-tint lg:order-1">
-					{/* Placeholder para o mapa - substitua src pelo embed real do Google Maps */}
 					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1976844847747!2d-46.6522202!3d-23.5505199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzAxLjkiUyA0NsKwMzknMDguMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+						src={`https://www.google.com/maps?q=${consultaMapa}&z=17&output=embed`}
 						width="100%"
 						height="100%"
 						style={{ border: 0, minHeight: 380 }}
 						allowFullScreen
 						loading="lazy"
 						referrerPolicy="no-referrer-when-downgrade"
-						title="Localização da Paróquia de Santana"
+						title="Mapa da Igreja Matriz de Sant’Ana"
 					/>
 				</div>
 
 				{/* Informações */}
 				<dl className="order-1 lg:order-2">
 					<div className="border-t border-line py-5">
-						<dt className="rubrica">Endereço</dt>
+						<dt className="eyebrow">Endereço</dt>
 						<dd className="mt-2 font-serif text-2xl leading-snug text-ink">
-							{endereco.rua}
+							{igreja}
+						</dd>
+						<dd className="mt-1 text-lg text-ink">
+							{endereco.rua}, {endereco.bairro}
 							<br />
-							{endereco.bairro}, {endereco.cidade} – {endereco.estado}
+							{endereco.cidade} – {endereco.estado}
 						</dd>
 						<dd className="hora mt-1 text-sm text-muted">CEP {endereco.cep}</dd>
-					</div>
-					<div className="border-t border-line py-5">
-						<dt className="rubrica">Telefone</dt>
-						<dd className="mt-2">
+						<dd className="mt-4">
 							<a
-								href={`tel:${paroquiaInfo.telefone.replace(/\D/g, "")}`}
-								className="hora text-lg text-ink hover:text-verde"
+								href={`https://www.google.com/maps/search/?api=1&query=${consultaMapa}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
 							>
-								{paroquiaInfo.telefone}
+								Abrir no Google Maps
 							</a>
 						</dd>
 					</div>
-					<div className="border-t border-line py-5">
-						<dt className="rubrica">E-mail</dt>
-						<dd className="mt-2 break-all">
-							<a
-								href={`mailto:${paroquiaInfo.email}`}
-								className="text-lg text-ink hover:text-verde"
-							>
-								{paroquiaInfo.email}
-							</a>
-						</dd>
-					</div>
-					<div className="border-y border-line py-5">
-						<dt className="rubrica">Secretaria</dt>
-						<dd className="mt-2 text-lg text-ink">
-							{outrosHorarios.secretaria}
-						</dd>
-					</div>
+					{paroco && (
+						<div className="border-t border-line py-5">
+							<dt className="eyebrow">Pároco</dt>
+							<dd className="mt-2 text-lg text-ink">{paroco}</dd>
+						</div>
+					)}
+					{telefone && (
+						<div className="border-t border-line py-5">
+							<dt className="eyebrow">Telefone</dt>
+							<dd className="mt-2">
+								<a
+									href={`tel:${telefone.replace(/\D/g, "")}`}
+									className="hora text-lg text-ink hover:text-primary"
+								>
+									{telefone}
+								</a>
+							</dd>
+						</div>
+					)}
+					{email && (
+						<div className="border-t border-line py-5">
+							<dt className="eyebrow">E-mail</dt>
+							<dd className="mt-2 break-all">
+								<a
+									href={`mailto:${email}`}
+									className="text-lg text-ink hover:text-primary"
+								>
+									{email}
+								</a>
+							</dd>
+						</div>
+					)}
+					{outrosHorarios.secretaria && (
+						<div className="border-t border-line py-5">
+							<dt className="eyebrow">Secretaria</dt>
+							<dd className="mt-2 text-lg text-ink">
+								{outrosHorarios.secretaria}
+							</dd>
+						</div>
+					)}
 				</dl>
 			</div>
-
-			{/* Como Chegar */}
-			<section className="mt-16">
-				<h2 className="text-3xl text-ink">Como chegar</h2>
-				<div className="mt-6 grid grid-cols-1 gap-x-10 md:grid-cols-3">
-					{comoChegar.map((item) => (
-						<div key={item.titulo} className="border-t border-line py-5">
-							<h3 className="text-xl text-ink">{item.titulo}</h3>
-							<p className="mt-1 text-muted">{item.texto}</p>
-						</div>
-					))}
-				</div>
-			</section>
 		</div>
 	);
 }

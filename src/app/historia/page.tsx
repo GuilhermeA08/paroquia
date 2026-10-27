@@ -3,9 +3,9 @@ import SectionTitle from "@/components/SectionTitle";
 import { historia } from "@/lib/data";
 
 export const metadata: Metadata = {
-	title: "História | Paróquia de Santana",
+	title: "História | Paróquia de Sant’Ana",
 	description:
-		"Conheça a história da Paróquia de Santana, uma trajetória de fé e tradição que atravessa gerações.",
+		"Conheça a história da Paróquia de Sant’Ana, uma trajetória de fé e tradição que atravessa gerações.",
 };
 
 export default function HistoriaPage() {
@@ -13,7 +13,7 @@ export default function HistoriaPage() {
 		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
 			<SectionTitle
 				as="h1"
-				eyebrow="Desde 1900"
+				eyebrow="Paróquia desde 1837"
 				title={historia.titulo}
 				subtitle={historia.subtitulo}
 			/>
@@ -25,7 +25,7 @@ export default function HistoriaPage() {
 						key={item.ano}
 						className="grid grid-cols-1 gap-2 border-t border-line py-8 sm:grid-cols-[11rem_1fr] sm:gap-8"
 					>
-						<p className="hora font-serif text-4xl leading-none text-rubrica">
+						<p className="hora font-serif text-4xl leading-none text-accent">
 							{item.ano}
 						</p>
 						<div className="min-w-0">
@@ -41,10 +41,8 @@ export default function HistoriaPage() {
 			{/* Padroeira */}
 			<section className="mt-16 grid grid-cols-1 gap-8 border-t-2 border-ink pt-10 lg:grid-cols-[1fr_2fr]">
 				<div>
-					<p className="rubrica">Festa em 26 de julho</p>
-					<h2 className="mt-3 text-4xl text-ink">
-						Sant&apos;Ana, nossa padroeira
-					</h2>
+					<p className="eyebrow">Festa em 26 de julho</p>
+					<h2 className="mt-3 text-4xl text-ink">Sant’Ana, nossa padroeira</h2>
 				</div>
 				<div className="max-w-prose space-y-4 font-serif text-xl leading-relaxed text-ink">
 					<p className="capitular">

@@ -1,56 +1,30 @@
 @import "tailwindcss";
 
-/* Missal paroquial: papel claro e tinta escura, rubricas em vermelho,
-   o verde do manto de Sant'Ana como cor estrutural e ouro só em filetes. */
+/* Tema claro com as cores do brasão: azul do escudo como cor principal,
+   ocre dourado nos sobretítulos e dourado claro só em filetes e sublinhados. */
 :root {
-	--paper: #f7f6f2;
-	--surface: #fdfdfb;
-	--ink: #1c211e;
-	--muted: #5b645e;
-	--line: #dad9d0;
-	--tint: #e7ede8;
-	--verde: #1f4a3b;
-	--band: #1f4a3b;
-	--band-deep: #163a2e;
-	--on-band: #f3f1e9;
-	--on-band-muted: #b9c8bf;
-	--rubrica: #a12b28;
-	--ouro: #a8842f;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--paper: #121614;
-		--surface: #181d1a;
-		--ink: #e8e7e0;
-		--muted: #9fa8a1;
-		--line: #2c3430;
-		--tint: #1c2823;
-		--verde: #8fc2a8;
-		--band: #15271f;
-		--band-deep: #0e1b15;
-		--on-band: #ecebe3;
-		--on-band-muted: #9fb3a7;
-		--rubrica: #e27f72;
-		--ouro: #cfae5f;
-		color-scheme: dark;
-	}
+	--paper: #ffffff;
+	--surface: #f7f8fa;
+	--tint: #edf2f7;
+	--ink: #1d2733;
+	--muted: #5a6573;
+	--line: #e0e5eb;
+	--primary: #005aa2;
+	--accent: #8a6116;
+	--gold: #e8ad00;
+	color-scheme: light;
 }
 
 @theme inline {
 	--color-paper: var(--paper);
 	--color-surface: var(--surface);
+	--color-tint: var(--tint);
 	--color-ink: var(--ink);
 	--color-muted: var(--muted);
 	--color-line: var(--line);
-	--color-tint: var(--tint);
-	--color-verde: var(--verde);
-	--color-band: var(--band);
-	--color-band-deep: var(--band-deep);
-	--color-on-band: var(--on-band);
-	--color-on-band-muted: var(--on-band-muted);
-	--color-rubrica: var(--rubrica);
-	--color-ouro: var(--ouro);
+	--color-primary: var(--primary);
+	--color-accent: var(--accent);
+	--color-gold: var(--gold);
 	--font-serif: var(--font-garamond), "EB Garamond", Garamond, Georgia, serif;
 	--font-sans:
 		var(--font-source), "Source Sans 3", "Segoe UI", Arial, sans-serif;
@@ -74,13 +48,13 @@ h4 {
 }
 
 :focus-visible {
-	outline: 2px solid var(--rubrica);
+	outline: 2px solid var(--primary);
 	outline-offset: 3px;
 }
 
-/* Rubrica: as indicações em vermelho dos livros litúrgicos */
-.rubrica {
-	color: var(--rubrica);
+/* Sobretítulo em versalete acima dos títulos */
+.eyebrow {
+	color: var(--accent);
 	font-size: 0.75rem;
 	font-weight: 600;
 	letter-spacing: 0.14em;
@@ -94,7 +68,7 @@ h4 {
 	font-size: 3.6em;
 	line-height: 0.85;
 	padding: 0.06em 0.12em 0 0;
-	color: var(--rubrica);
+	color: var(--primary);
 }
 
 /* Linha pontilhada de índice, entre o título e a seta */

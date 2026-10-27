@@ -41,7 +41,7 @@ export default function PhotoGallery({ fotos }: PhotoGalleryProps) {
 						onClick={() => setFilter(cat)}
 						className={`-mb-px border-b-2 pb-3 text-sm transition-colors ${
 							filter === cat
-								? "border-rubrica text-ink"
+								? "border-accent text-ink"
 								: "border-transparent text-muted hover:text-ink"
 						}`}
 					>
@@ -72,7 +72,7 @@ export default function PhotoGallery({ fotos }: PhotoGalleryProps) {
 								}}
 							/>
 						</div>
-						<p className="mt-3 font-serif text-lg text-ink group-hover:text-verde">
+						<p className="mt-3 font-serif text-lg text-ink group-hover:text-primary">
 							{foto.titulo}
 						</p>
 						<p className="text-sm text-muted">{foto.categoria}</p>

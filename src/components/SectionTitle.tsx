@@ -15,7 +15,7 @@ export default function SectionTitle({
 }: SectionTitleProps) {
 	return (
 		<div className={`mb-10 ${centered ? "text-center" : ""}`}>
-			{eyebrow && <p className="rubrica mb-3">{eyebrow}</p>}
+			{eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
 			<Heading
 				className={`text-ink ${
 					Heading === "h1" ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"
