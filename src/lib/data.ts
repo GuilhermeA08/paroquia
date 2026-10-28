@@ -370,6 +370,11 @@ export const fotosPadres = [
 		foto: "/images/padres/frei-basilio-de-lima.jpg",
 	},
 	{
+		nome: "Pe. João do Vale",
+		periodo: "1978",
+		foto: "/images/padres/joao-do-vale.jpg",
+	},
+	{
 		nome: "Pe. Geraldo Van Geel",
 		periodo: "1987–1989",
 		foto: "/images/padres/geraldo-van-geel.jpg",
@@ -428,6 +433,16 @@ export const fotosPadres = [
 		nome: "Pe. Rafael Andrade da Silva",
 		periodo: "2019",
 		foto: "/images/padres/rafael-andrade-da-silva.jpg",
+	},
+	{
+		nome: "Pe. Antônio Carlos Dantas (Pe. Carlinhos)",
+		periodo: "2020–2021",
+		foto: "/images/padres/antonio-carlos-dantas.jpg",
+	},
+	{
+		nome: "Pe. Possidio Lopes dos Santos Neto",
+		periodo: "Pároco desde 2022",
+		foto: "/images/padres/possidio-lopes-dos-santos-neto.jpg",
 	},
 ];
 

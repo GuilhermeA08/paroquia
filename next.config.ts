@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
 		unoptimized: false,
 		formats: ["image/avif", "image/webp"],
 	},
-	// Painel de notícias (Decap CMS) servido de public/admin
-	async rewrites() {
-		return [{ source: "/admin", destination: "/admin/index.html" }];
+	experimental: {
+		// Fotos das notícias chegam já reduzidas pelo navegador; o limite cobre a sobra
+		serverActions: { bodySizeLimit: "4mb" },
 	},
 };
 
