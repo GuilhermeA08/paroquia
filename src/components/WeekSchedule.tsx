@@ -1,10 +1,15 @@
-import { horariosMissas } from "@/lib/data";
+import { horariosMissas, type Missa } from "@/lib/data";
+import { rotuloRecorrencia } from "@/lib/liturgia";
 
-// Celebrações fixas da paróquia, uma por coluna; a missa dominical em destaque
-export default function WeekSchedule() {
+// Celebrações fixas de uma igreja, uma por coluna; a missa dominical em destaque
+export default function WeekSchedule({
+	missas = horariosMissas,
+}: {
+	missas?: Missa[];
+}) {
 	return (
 		<ol className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2">
-			{horariosMissas.map((missa) => (
+			{missas.map((missa) => (
 				<li
 					key={missa.dia}
 					className={`flex flex-col gap-4 p-6 sm:p-8 ${
@@ -12,9 +17,7 @@ export default function WeekSchedule() {
 					}`}
 				>
 					<div>
-						<p className="eyebrow">
-							{missa.recorrencia === "semanal" ? "Toda semana" : "Todo mês"}
-						</p>
+						<p className="eyebrow">{rotuloRecorrencia(missa.recorrencia)}</p>
 						<p className="mt-2 font-serif text-3xl text-ink">{missa.dia}</p>
 						<p className="mt-1 text-muted">{missa.descricao}</p>
 					</div>

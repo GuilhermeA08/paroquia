@@ -25,8 +25,15 @@ export const paroquiaInfo = {
 	},
 };
 
-// Regra de recorrência: toda semana, ou só na primeira ocorrência do dia no mês
-export type Recorrencia = "semanal" | "primeira-do-mes";
+// Regra de recorrência: toda semana, ou só numa ocorrência do dia no mês
+// (ex.: "terceira-do-mes" com diaSemana 0 é o terceiro domingo do mês)
+export type Recorrencia =
+	| "semanal"
+	| "primeira-do-mes"
+	| "segunda-do-mes"
+	| "terceira-do-mes"
+	| "quarta-do-mes"
+	| "ultima-do-mes";
 
 export interface Missa {
 	dia: string;
@@ -55,6 +62,76 @@ export const horariosMissas: Missa[] = [
 		destaque: false,
 	},
 ];
+
+// Igrejas e capelas da paróquia. Campos vazios ("") ficam ocultos no site.
+export interface Comunidade {
+	slug: string;
+	nome: string;
+	// Bairro, na cidade, ou sítio/povoado, na zona rural
+	localidade: string;
+	zona: "urbana" | "rural";
+	padroeiro: string;
+	// Ex.: "13 de maio"
+	festa: string;
+	foto: string;
+	// Plus Code, coordenadas ou endereço, como se digita na busca do Google Maps
+	mapa: string;
+	historico: string;
+	missas: Missa[];
+}
+
+export const matriz: Comunidade = {
+	slug: "matriz",
+	nome: paroquiaInfo.igreja,
+	localidade: `${paroquiaInfo.endereco.rua}, ${paroquiaInfo.endereco.bairro}`,
+	zona: "urbana",
+	padroeiro: "Sant’Ana",
+	festa: "26 de julho",
+	foto: "/images/gallery/fachada-da-igreja.jpg",
+	mapa: paroquiaInfo.plusCode,
+	historico: "Sede da paróquia, criada em 1837.",
+	missas: horariosMissas,
+};
+
+// Fotos das capelas vão em public/images/comunidades
+export const capelas: Comunidade[] = [
+	{
+		slug: "nossa-senhora-de-fatima",
+		nome: "Capela de Nossa Senhora de Fátima",
+		localidade: "",
+		zona: "urbana",
+		padroeiro: "Nossa Senhora de Fátima",
+		festa: "",
+		foto: "",
+		mapa: "",
+		historico: "",
+		missas: [],
+	},
+	// Modelo de capela rural: copie, preencha e tire as barras
+	// {
+	// 	slug: "sao-jose-sitio-exemplo",
+	// 	nome: "Capela de São José",
+	// 	localidade: "Sítio Exemplo",
+	// 	zona: "rural",
+	// 	padroeiro: "São José",
+	// 	festa: "19 de março",
+	// 	foto: "/images/comunidades/sao-jose.jpg",
+	// 	mapa: "",
+	// 	historico: "",
+	// 	missas: [
+	// 		{
+	// 			dia: "Terceiro domingo do mês",
+	// 			diaSemana: 0,
+	// 			recorrencia: "terceira-do-mes",
+	// 			horarios: ["09:00"],
+	// 			descricao: "Missa na comunidade",
+	// 			destaque: false,
+	// 		},
+	// 	],
+	// },
+];
+
+export const comunidades = [matriz, ...capelas];
 
 export const outrosHorarios: {
 	confissao?: string;
@@ -543,6 +620,7 @@ export const menuItems = [
 	{ label: "Início", href: "/" },
 	{ label: "História", href: "/historia" },
 	{ label: "Localização", href: "/localizacao" },
+	{ label: "Comunidades", href: "/comunidades" },
 	{ label: "Missas", href: "/missas" },
 	{ label: "Downloads", href: "/downloads" },
 	{ label: "Galeria", href: "/galeria" },

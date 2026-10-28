@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 import WeekSchedule from "@/components/WeekSchedule";
-import { outrosHorarios } from "@/lib/data";
+import { capelas, outrosHorarios } from "@/lib/data";
 
 export const metadata: Metadata = {
 	title: "Horários das Missas | Paróquia de Sant’Ana",
@@ -15,6 +16,8 @@ const outrasCelebracoes = [
 	{ titulo: "Secretaria paroquial", texto: outrosHorarios.secretaria },
 ].filter((item) => item.texto);
 
+const capelasComMissa = capelas.filter((capela) => capela.missas.length > 0);
+
 export default function MissasPage() {
 	return (
 		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
@@ -22,10 +25,42 @@ export default function MissasPage() {
 				as="h1"
 				eyebrow="Celebrações"
 				title="Horários das missas"
-				subtitle="Venha celebrar conosco na Igreja Matriz de Sant’Ana."
+				subtitle={
+					capelasComMissa.length > 0
+						? "Na Igreja Matriz de Sant’Ana e nas capelas da paróquia."
+						: "Venha celebrar conosco na Igreja Matriz de Sant’Ana."
+				}
 			/>
 
 			<WeekSchedule />
+
+			{/* Capelas */}
+			{capelasComMissa.length > 0 && (
+				<section className="mt-16">
+					<h2 className="text-3xl text-ink">Nas capelas</h2>
+					<div className="mt-6 space-y-10">
+						{capelasComMissa.map((capela) => (
+							<div key={capela.slug}>
+								<div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+									<h3 className="text-2xl text-ink">
+										{capela.nome}
+										{capela.localidade && (
+											<span className="text-muted"> · {capela.localidade}</span>
+										)}
+									</h3>
+									<Link
+										href={`/comunidades#${capela.slug}`}
+										className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
+									>
+										Como chegar
+									</Link>
+								</div>
+								<WeekSchedule missas={capela.missas} />
+							</div>
+						))}
+					</div>
+				</section>
+			)}
 
 			{/* Outras atividades */}
 			{outrasCelebracoes.length > 0 && (
