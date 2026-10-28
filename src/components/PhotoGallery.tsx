@@ -59,7 +59,7 @@ export default function PhotoGallery({ fotos }: PhotoGalleryProps) {
 						onClick={() => setSelectedPhoto(foto)}
 						className="group text-left"
 					>
-						<div className="relative aspect-[4/3] overflow-hidden bg-tint">
+						<div className="relative aspect-[3/4] overflow-hidden bg-tint">
 							<Image
 								src={foto.imagem}
 								alt={foto.titulo}
@@ -111,7 +111,7 @@ export default function PhotoGallery({ fotos }: PhotoGalleryProps) {
 							src={selectedPhoto.imagem}
 							alt={selectedPhoto.titulo}
 							width={1200}
-							height={800}
+							height={1600}
 							className="mx-auto max-h-[75vh] object-contain"
 							onError={(e) => {
 								const target = e.target as HTMLImageElement;

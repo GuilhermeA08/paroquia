@@ -1,18 +1,9 @@
-# Galeria de Fotos
+# Galeria de fotos
 
-Esta pasta deve conter as fotos da galeria da paróquia.
+Fotos exibidas em `/galeria`, cadastradas em `galeriaFotos` (`src/lib/data.ts`).
 
-## Estrutura sugerida:
+Os originais ficam em `materiais/fotos`. Fotos de iPhone (HEIC) são convertidas para JPEG:
 
-- fachada.jpg - Foto da fachada da igreja
-- interior.jpg - Foto do interior do templo
-- altar.jpg - Foto do altar-mor
-- missa.jpg - Foto de uma missa dominical
-- festa.jpg - Foto da festa da padroeira
-- coral.jpg - Foto do coral paroquial
-
-## Formato recomendado:
-
-- Resolução: 1200x800px ou superior
-- Formato: JPG ou PNG
-- Tamanho máximo: 500KB por imagem (otimizada para web)
+- até 1600 px no lado maior, qualidade 80;
+- orientação aplicada e metadados removidos (inclusive localização GPS);
+- formato em pé (3:4), que é o recorte usado no grid da galeria.

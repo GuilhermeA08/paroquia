@@ -148,43 +148,67 @@ export const logosDownload = [
 	},
 ];
 
-// Fotos de exemplo: substituir pelas fotos reais em materiais/fotos
+// Fotos convertidas de materiais/fotos (HEIC) para JPEG em public/images/gallery
 export const galeriaFotos = [
 	{
 		id: 1,
-		titulo: "Fachada da Igreja",
+		titulo: "Fachada da Igreja Matriz",
 		categoria: "Igreja",
-		imagem: "/images/gallery/fachada.jpg",
+		imagem: "/images/gallery/fachada-da-igreja.jpg",
 	},
 	{
 		id: 2,
-		titulo: "Interior do Templo",
+		titulo: "Imagem de Sant’Ana",
 		categoria: "Igreja",
-		imagem: "/images/gallery/interior.jpg",
+		imagem: "/images/gallery/imagem-de-santana.jpg",
 	},
 	{
 		id: 3,
-		titulo: "Altar-mor",
-		categoria: "Igreja",
-		imagem: "/images/gallery/altar.jpg",
+		titulo: "Coroinha em oração",
+		categoria: "Celebrações",
+		imagem: "/images/gallery/comunhao.jpg",
 	},
 	{
 		id: 4,
-		titulo: "Missa Dominical",
+		titulo: "Distribuição da comunhão",
 		categoria: "Celebrações",
-		imagem: "/images/gallery/missa.jpg",
+		imagem: "/images/gallery/comunhao2.jpg",
 	},
 	{
 		id: 5,
-		titulo: "Festa da Padroeira 2025",
-		categoria: "Eventos",
-		imagem: "/images/gallery/festa.jpg",
+		titulo: "Adoração ao Santíssimo",
+		categoria: "Celebrações",
+		imagem: "/images/gallery/adoracao-ao-santissimo.jpg",
 	},
 	{
 		id: 6,
-		titulo: "Coral Paroquial",
-		categoria: "Grupos",
-		imagem: "/images/gallery/coral.jpg",
+		titulo: "O terço na novena",
+		categoria: "Novena",
+		imagem: "/images/gallery/novena.jpg",
+	},
+	{
+		id: 7,
+		titulo: "Oração na novena",
+		categoria: "Novena",
+		imagem: "/images/gallery/novena2.jpg",
+	},
+	{
+		id: 8,
+		titulo: "Procissão pelas ruas",
+		categoria: "Procissão",
+		imagem: "/images/gallery/procissao.jpg",
+	},
+	{
+		id: 9,
+		titulo: "Devoção a Sant’Ana nas famílias",
+		categoria: "Procissão",
+		imagem: "/images/gallery/procissao2.jpg",
+	},
+	{
+		id: 10,
+		titulo: "Promessa de pés descalços",
+		categoria: "Procissão",
+		imagem: "/images/gallery/promessa.jpg",
 	},
 ];
 
@@ -195,7 +219,7 @@ export const dadosPix = {
 	tipoChave: "CNPJ",
 	nomeBeneficiario: "Paróquia de Sant’Ana",
 	cidade: "Campo Grande",
-	qrCodeImagem: "",
+	qrCodeImagem: "/images/pix/qrcode-pix.png",
 };
 
 export const menuItems = [
