@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatarData } from "@/components/NewsCard";
-import { noticias } from "@/lib/data";
+import { buscarNoticia, conteudoEmHtml, listarNoticias } from "@/lib/noticias";
 
 interface PageProps {
 	params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-	return noticias.map((noticia) => ({
+	return listarNoticias().map((noticia) => ({
 		slug: noticia.slug,
 	}));
 }
@@ -18,7 +19,7 @@ export async function generateMetadata({
 	params,
 }: PageProps): Promise<Metadata> {
 	const { slug } = await params;
-	const noticia = noticias.find((n) => n.slug === slug);
+	const noticia = buscarNoticia(slug);
 
 	if (!noticia) {
 		return {
@@ -34,7 +35,7 @@ export async function generateMetadata({
 
 export default async function NoticiaPage({ params }: PageProps) {
 	const { slug } = await params;
-	const noticia = noticias.find((n) => n.slug === slug);
+	const noticia = buscarNoticia(slug);
 
 	if (!noticia) {
 		notFound();
@@ -73,10 +74,22 @@ export default async function NoticiaPage({ params }: PageProps) {
 					<p className="mt-4 text-xl text-muted">{noticia.resumo}</p>
 				</header>
 
+				{noticia.imagem && (
+					<Image
+						src={noticia.imagem}
+						alt=""
+						width={1600}
+						height={1200}
+						sizes="(min-width: 672px) 672px, 100vw"
+						className="mt-8 h-auto w-full bg-tint"
+					/>
+				)}
+
 				{/* Conteúdo */}
-				<div className="mt-8 font-serif text-xl leading-relaxed text-ink">
-					<p className="capitular">{noticia.conteudo}</p>
-				</div>
+				<div
+					className="texto-noticia mt-8 font-serif text-xl leading-relaxed text-ink"
+					dangerouslySetInnerHTML={{ __html: conteudoEmHtml(noticia.conteudo) }}
+				/>
 
 				{/* Compartilhar */}
 				<div className="mt-12 flex flex-wrap items-center gap-3 border-t border-line pt-6">

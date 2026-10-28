@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<title>Painel de notícias · Paróquia de Sant’Ana</title>
+		<script>
+			// Configuração feita aqui (e não num config.yml) para usar o domínio
+			// em que o painel foi aberto: funciona na Vercel e em localhost.
+			window.CMS_MANUAL_INIT = true;
+		</script>
+		<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+	</head>
+	<body>
+		<script>
+			const local = ["localhost", "127.0.0.1"].includes(location.hostname);
+
+			CMS.init({
+				config: {
+					load_config_file: false,
+					locale: "pt",
+					// Em localhost, com `npm run cms`, edita os arquivos direto, sem login
+					local_backend: local,
+					backend: {
+						name: "github",
+						repo: "GuilhermeA08/paroquia",
+						branch: "main",
+						base_url: location.origin,
+						auth_endpoint: "api/auth",
+						commit_messages: {
+							create: "content: nova notícia “{{slug}}”",
+							update: "content: atualiza notícia “{{slug}}”",
+							delete: "content: remove notícia “{{slug}}”",
+							uploadMedia: "content: envia imagem “{{path}}”",
+							deleteMedia: "content: remove imagem “{{path}}”",
+						},
+					},
+					site_url: location.origin,
+					display_url: location.origin,
+					logo_url: "/logos/brasao-paroquia-web.png",
+					media_folder: "public/images/noticias",
+					public_folder: "/images/noticias",
+					slug: { encoding: "ascii", clean_accents: true },
+					collections: [
+						{
+							name: "noticias",
+							label: "Notícias",
+							label_singular: "Notícia",
+							description:
+								"Avisos publicados em /noticias. Depois de salvar, o site atualiza em cerca de 1 minuto.",
+							folder: "content/noticias",
+							create: true,
+							slug: "{{titulo}}",
+							identifier_field: "titulo",
+							summary: "{{titulo}} · {{data}}",
+							sortable_fields: ["data", "titulo"],
+							preview_path: "noticias/{{slug}}",
+							fields: [
+								{ label: "Título", name: "titulo", widget: "string" },
+								{
+									label: "Data",
+									name: "data",
+									widget: "datetime",
+									format: "YYYY-MM-DD",
+									date_format: "DD/MM/YYYY",
+									time_format: false,
+								},
+								{
+									label: "Resumo",
+									name: "resumo",
+									widget: "text",
+									hint: "Uma ou duas frases. Aparece na lista de avisos e na página inicial.",
+								},
+								{
+									label: "Foto de capa",
+									name: "imagem",
+									widget: "image",
+									required: false,
+									choose_url: false,
+								},
+								{
+									label: "Texto",
+									name: "body",
+									widget: "markdown",
+									buttons: [
+										"bold",
+										"italic",
+										"link",
+										"heading-two",
+										"heading-three",
+										"bulleted-list",
+										"numbered-list",
+										"quote",
+									],
+									editor_components: ["image"],
+								},
+							],
+						},
+					],
+				},
+			});
+		</script>
+	</body>
+</html>

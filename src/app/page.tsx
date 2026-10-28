@@ -3,7 +3,8 @@ import Link from "next/link";
 import NewsCard from "@/components/NewsCard";
 import ProximaMissa from "@/components/ProximaMissa";
 import WeekSchedule from "@/components/WeekSchedule";
-import { noticias, outrosHorarios, paroquiaInfo } from "@/lib/data";
+import { outrosHorarios, paroquiaInfo } from "@/lib/data";
+import { listarNoticias } from "@/lib/noticias";
 
 const indice = [
 	{
@@ -34,7 +35,7 @@ const indice = [
 ];
 
 export default function Home() {
-	const [principal, ...outras] = noticias.slice(0, 3);
+	const [principal, ...outras] = listarNoticias().slice(0, 3);
 	const outros = [
 		["Confissão", outrosHorarios.confissao],
 		["Adoração ao Santíssimo", outrosHorarios.adoracao],
@@ -148,7 +149,7 @@ export default function Home() {
 						<div>
 							{outras.map((noticia) => (
 								<NewsCard
-									key={noticia.id}
+									key={noticia.slug}
 									slug={noticia.slug}
 									titulo={noticia.titulo}
 									resumo={noticia.resumo}

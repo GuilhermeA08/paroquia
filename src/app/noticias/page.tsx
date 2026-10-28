@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import NewsCard from "@/components/NewsCard";
 import SectionTitle from "@/components/SectionTitle";
-import { noticias } from "@/lib/data";
+import { listarNoticias } from "@/lib/noticias";
 
 export const metadata: Metadata = {
 	title: "Notícias | Paróquia de Sant’Ana",
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function NoticiasPage() {
+	const noticias = listarNoticias();
+
 	return (
 		<div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:py-20">
 			<SectionTitle
@@ -22,7 +24,7 @@ export default function NoticiasPage() {
 			<div className="max-w-3xl">
 				{noticias.map((noticia) => (
 					<NewsCard
-						key={noticia.id}
+						key={noticia.slug}
 						slug={noticia.slug}
 						titulo={noticia.titulo}
 						resumo={noticia.resumo}

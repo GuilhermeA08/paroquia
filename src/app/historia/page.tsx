@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SectionTitle from "@/components/SectionTitle";
-import { historia } from "@/lib/data";
+import { fotosPadres, historia, padres } from "@/lib/data";
 
 export const metadata: Metadata = {
 	title: "História | Paróquia de Sant’Ana",
 	description:
-		"Conheça a história da Paróquia de Sant’Ana, uma trajetória de fé e tradição que atravessa gerações.",
+		"A história da Paróquia de Sant’Ana de Campo Grande/RN, criada em 1837, e a relação dos padres que a conduziram.",
 };
 
 export default function HistoriaPage() {
@@ -17,6 +18,10 @@ export default function HistoriaPage() {
 				title={historia.titulo}
 				subtitle={historia.subtitulo}
 			/>
+
+			<p className="capitular mb-12 max-w-3xl font-serif text-xl leading-relaxed text-ink sm:text-2xl">
+				{historia.introducao}
+			</p>
 
 			{/* Linha do tempo */}
 			<ol className="max-w-4xl">
@@ -37,6 +42,49 @@ export default function HistoriaPage() {
 					</li>
 				))}
 			</ol>
+
+			{/* Padres */}
+			<section className="mt-16 border-t-2 border-ink pt-10">
+				<p className="eyebrow">Desde 1837</p>
+				<h2 className="mt-3 text-4xl text-ink">Os padres da paróquia</h2>
+				<p className="mt-3 max-w-prose text-muted">
+					Vigários, párocos e padres que serviram à comunidade de Sant’Ana ao
+					longo de quase dois séculos.
+				</p>
+
+				<ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+					{fotosPadres.map((padre) => (
+						<li key={padre.foto}>
+							<Image
+								src={padre.foto}
+								alt={padre.nome}
+								width={480}
+								height={600}
+								sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+								className="aspect-[4/5] w-full bg-tint object-cover"
+							/>
+							<p className="mt-3 font-serif text-lg leading-snug text-ink">
+								{padre.nome}
+							</p>
+							<p className="hora text-sm text-muted">{padre.periodo}</p>
+						</li>
+					))}
+				</ul>
+
+				<h3 className="mt-16 text-2xl text-ink">Relação completa</h3>
+				<ol className="mt-4 gap-x-12 lg:columns-2">
+					{padres.map((item, i) => (
+						<li
+							// Há anos repetidos na lista, então o índice entra na chave
+							key={`${item.periodo}-${i}`}
+							className="grid break-inside-avoid grid-cols-[6.5rem_1fr] gap-4 border-t border-line py-2.5"
+						>
+							<span className="hora text-sm text-accent">{item.periodo}</span>
+							<span className="min-w-0 text-ink">{item.nomes}</span>
+						</li>
+					))}
+				</ol>
+			</section>
 
 			{/* Padroeira */}
 			<section className="mt-16 grid grid-cols-1 gap-8 border-t-2 border-ink pt-10 lg:grid-cols-[1fr_2fr]">
