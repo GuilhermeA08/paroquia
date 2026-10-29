@@ -10,8 +10,9 @@ export default function ComunidadeCard({
 	const { slug, nome, localidade, padroeiro, festa, foto, mapa, historico } =
 		comunidade;
 
+	const padroeira = /^(Nossa Senhora|Santa|Sant’Ana)/.test(padroeiro);
 	const detalhes = [
-		["Padroeiro", padroeiro],
+		[padroeira ? "Padroeira" : "Padroeiro", padroeiro],
 		["Festa", festa],
 	].filter((item): item is [string, string] => Boolean(item[1]));
 
