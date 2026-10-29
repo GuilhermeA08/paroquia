@@ -506,6 +506,11 @@ export const fotosPadres = [
 		foto: "/images/padres/joao-do-vale.jpg",
 	},
 	{
+		nome: "Pe. Pedro Neefs",
+		periodo: "1979–2006",
+		foto: "/images/padres/pedro-neefs.jpg",
+	},
+	{
 		nome: "Pe. Geraldo Van Geel",
 		periodo: "1987–1989",
 		foto: "/images/padres/geraldo-van-geel.jpg",
