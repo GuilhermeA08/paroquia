@@ -45,8 +45,18 @@ export default function Home() {
 	return (
 		<div>
 			{/* Abertura */}
-			<section className="border-b border-line">
-				<div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.35fr_1fr]">
+			<section className="relative isolate overflow-hidden border-b border-line bg-[#062f52]">
+				<Image
+					src="/images/gallery/fachada-da-igreja.jpg"
+					alt=""
+					fill
+					priority
+					sizes="100vw"
+					className="-z-20 object-cover object-[center_35%] lg:left-auto lg:w-[62%] lg:object-[center_62%]"
+				/>
+				{/* Escurece a foto para o texto branco ficar legível */}
+				<div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(6_47_82/0.78),rgb(6_47_82/0.92))] lg:bg-[linear-gradient(90deg,#062f52_38%,rgb(6_47_82/0.6)_58%,rgb(6_47_82/0.15))]" />
+				<div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 md:py-24 lg:grid-cols-[1.35fr_1fr]">
 					<div className="min-w-0">
 						<Image
 							src="/logos/brasao-paroquia-web.png"
@@ -56,27 +66,27 @@ export default function Home() {
 							priority
 							className="mb-8 h-40 w-auto"
 						/>
-						<p className="eyebrow">
+						<p className="eyebrow !text-gold">
 							{paroquiaInfo.endereco.cidade}/{paroquiaInfo.endereco.estado} ·
 							desde {paroquiaInfo.fundacao}
 						</p>
-						<h1 className="mt-5 text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
-							Paróquia de <em className="text-primary">Sant’Ana</em>
+						<h1 className="mt-5 text-5xl leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+							Paróquia de <em className="text-gold">Sant’Ana</em>
 						</h1>
-						<p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+						<p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
 							Uma comunidade de fé, esperança e amor ao próximo em{" "}
 							{paroquiaInfo.endereco.cidade}. As portas estão abertas para você.
 						</p>
 						<div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
 							<Link
 								href="/missas"
-								className="bg-primary px-6 py-3 font-semibold text-paper transition-opacity hover:opacity-90"
+								className="bg-gold px-6 py-3 font-semibold text-ink transition-opacity hover:opacity-90"
 							>
 								Horários das missas
 							</Link>
 							<Link
 								href="/historia"
-								className="font-semibold text-ink underline decoration-gold underline-offset-[6px] hover:text-primary"
+								className="font-semibold text-white underline decoration-gold underline-offset-[6px] hover:text-gold"
 							>
 								Conheça nossa história
 							</Link>
