@@ -561,6 +561,11 @@ export const fotosPadres = [
 		foto: "/images/padres/ramilson-raimundo-de-moura.jpg",
 	},
 	{
+		nome: "Pe. Eliseu Wilton de Maria",
+		periodo: "2016–2020",
+		foto: "/images/padres/eliseu-wilton-de-maria.jpg",
+	},
+	{
 		nome: "Pe. Rafael Andrade da Silva",
 		periodo: "2019",
 		foto: "/images/padres/rafael-andrade-da-silva.jpg",
