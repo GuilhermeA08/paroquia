@@ -4,6 +4,7 @@
 export const paroquiaInfo = {
 	nome: "Paróquia de Sant’Ana",
 	diocese: "Diocese de Mossoró",
+	siteDiocese: "https://diocesedemossoro.com.br/",
 	fundacao: "1837",
 	paroco: "Pe. Possidio Lopes dos Santos Neto",
 	igreja: "Igreja Matriz de Sant’Ana",

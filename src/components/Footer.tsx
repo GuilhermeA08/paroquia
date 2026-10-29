@@ -34,7 +34,12 @@ export default function Footer() {
 							Comunidade católica dedicada à oração, aos sacramentos e ao
 							serviço ao próximo, sob a proteção de Sant’Ana.
 						</p>
-						<div className="mt-5 flex items-center gap-3">
+						<a
+							href={paroquiaInfo.siteDiocese}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group mt-5 flex w-fit items-center gap-3"
+						>
 							<Image
 								src="/logos/brasao-diocese-mossoro.png"
 								alt=""
@@ -45,9 +50,11 @@ export default function Footer() {
 							<p className="text-sm">
 								Paróquia da
 								<br />
-								<span className="text-ink">{paroquiaInfo.diocese}</span>
+								<span className="text-ink underline decoration-gold underline-offset-4 group-hover:text-primary">
+									{paroquiaInfo.diocese}
+								</span>
 							</p>
-						</div>
+						</a>
 						<div className="mt-5 flex gap-4">
 							{redes.map((rede) => (
 								<a
