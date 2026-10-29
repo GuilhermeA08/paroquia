@@ -5,8 +5,7 @@ import { logosDownload } from "@/lib/data";
 
 export const metadata: Metadata = {
 	title: "Downloads | Paróquia de Sant’Ana",
-	description:
-		"Baixe logos e materiais oficiais da Paróquia de Sant’Ana em diferentes formatos.",
+	description: "Baixe o brasão e fotos oficiais da Paróquia de Sant’Ana.",
 };
 
 const permitido = [
@@ -30,7 +29,7 @@ export default function DownloadsPage() {
 				as="h1"
 				eyebrow="Identidade visual"
 				title="Downloads"
-				subtitle="Brasão oficial da paróquia para uso em materiais da comunidade."
+				subtitle="Brasão oficial e foto da Igreja Matriz para uso em materiais da comunidade."
 			/>
 
 			<div className="grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">
@@ -42,6 +41,7 @@ export default function DownloadsPage() {
 						formato={logo.formato}
 						tamanho={logo.tamanho}
 						preview={logo.preview}
+						foto={logo.foto}
 					/>
 				))}
 			</div>

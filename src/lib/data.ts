@@ -88,7 +88,7 @@ export const matriz: Comunidade = {
 	zona: "urbana",
 	padroeiro: "Sant’Ana",
 	festa: "26 de julho",
-	foto: "/images/gallery/fachada-da-igreja.jpg",
+	foto: "/images/igreja/matriz-fachada.jpg",
 	mapa: paroquiaInfo.plusCode,
 	historico: "Sede da paróquia, criada em 1837.",
 	missas: horariosMissas,
@@ -594,10 +594,37 @@ export const logosDownload = [
 		tamanho: "1024 × 1024 px · para redes sociais",
 		preview: "/logos/brasao-paroquia-web.png",
 	},
+	{
+		id: 3,
+		nome: "Foto da Igreja Matriz",
+		arquivo: "/downloads/igreja-matriz-sant-ana.jpg",
+		formato: "JPG",
+		tamanho: "4000 × 3000 px · alta resolução",
+		preview: "/images/gallery/igreja-e-cruzeiro.jpg",
+		foto: true,
+	},
 ];
 
-// Fotos convertidas de materiais/fotos (HEIC) para JPEG em public/images/gallery
+// Fotos da galeria em public/images/gallery (JPEG, até 1600 px)
 export const galeriaFotos = [
+	{
+		id: 11,
+		titulo: "A Matriz e o cruzeiro",
+		categoria: "Igreja",
+		imagem: "/images/gallery/igreja-e-cruzeiro.jpg",
+	},
+	{
+		id: 12,
+		titulo: "A Matriz vista da praça",
+		categoria: "Igreja",
+		imagem: "/images/gallery/igreja-e-praca.jpg",
+	},
+	{
+		id: 13,
+		titulo: "Vista aérea da Matriz e da cidade",
+		categoria: "Igreja",
+		imagem: "/images/gallery/igreja-vista-aerea.jpg",
+	},
 	{
 		id: 1,
 		titulo: "Fachada da Igreja Matriz",

@@ -7,6 +7,8 @@ interface DownloadCardProps {
 	formato: string;
 	tamanho: string;
 	preview: string;
+	// Fotos ocupam o quadro todo; logos ficam inteiros, com margem
+	foto?: boolean;
 }
 
 export default function DownloadCard({
@@ -15,6 +17,7 @@ export default function DownloadCard({
 	formato,
 	tamanho,
 	preview,
+	foto = false,
 }: DownloadCardProps) {
 	return (
 		<div className="flex flex-col border border-line bg-surface">
@@ -25,7 +28,7 @@ export default function DownloadCard({
 					alt={nome}
 					fill
 					sizes="(min-width: 640px) 360px, 100vw"
-					className="object-contain p-8"
+					className={foto ? "object-cover" : "object-contain p-8"}
 				/>
 			</div>
 

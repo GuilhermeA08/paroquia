@@ -47,15 +47,15 @@ export default function Home() {
 			{/* Abertura */}
 			<section className="relative isolate overflow-hidden border-b border-line bg-[#062f52]">
 				<Image
-					src="/images/gallery/fachada-da-igreja.jpg"
+					src="/images/igreja/matriz-fachada.jpg"
 					alt=""
 					fill
 					priority
 					sizes="100vw"
-					className="-z-20 object-cover object-[center_35%] lg:left-auto lg:w-[62%] lg:object-[center_62%]"
+					className="-z-20 object-cover object-[62%_center] lg:object-[center_45%]"
 				/>
 				{/* Escurece a foto para o texto branco ficar legível */}
-				<div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(6_47_82/0.78),rgb(6_47_82/0.92))] lg:bg-[linear-gradient(90deg,#062f52_38%,rgb(6_47_82/0.6)_58%,rgb(6_47_82/0.15))]" />
+				<div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(6_47_82/0.78),rgb(6_47_82/0.92))] lg:bg-[linear-gradient(90deg,#062f52_30%,rgb(6_47_82/0.7)_50%,rgb(6_47_82/0.2))]" />
 				<div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-14 sm:px-6 md:py-24 lg:grid-cols-[1.35fr_1fr]">
 					<div className="min-w-0">
 						<Image
