@@ -381,7 +381,7 @@ export const padres = [
 	},
 	{
 		periodo: "1978",
-		nomes: "Pe. João do Vale",
+		nomes: "Pe. José do Vale",
 	},
 	{
 		periodo: "1979",
@@ -501,9 +501,9 @@ export const fotosPadres = [
 		foto: "/images/padres/frei-basilio-de-lima.jpg",
 	},
 	{
-		nome: "Pe. João do Vale",
+		nome: "Pe. José do Vale",
 		periodo: "1978",
-		foto: "/images/padres/joao-do-vale.jpg",
+		foto: "/images/padres/jose-do-vale.jpg",
 	},
 	{
 		nome: "Pe. Pedro Neefs",
