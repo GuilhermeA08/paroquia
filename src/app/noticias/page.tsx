@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import NewsCard from "@/components/NewsCard";
+import NoticiasEmBreve from "@/components/NoticiasEmBreve";
 import SectionTitle from "@/components/SectionTitle";
 import { listarNoticias } from "@/lib/noticias";
 
@@ -33,15 +34,7 @@ export default function NoticiasPage() {
 				))}
 			</div>
 
-			{/* Se não houver notícias */}
-			{noticias.length === 0 && (
-				<div className="border-t border-line py-12">
-					<h2 className="text-2xl text-ink">Nenhum aviso no momento</h2>
-					<p className="mt-2 text-muted">
-						Volte em breve para conferir as novidades da comunidade.
-					</p>
-				</div>
-			)}
+			{noticias.length === 0 && <NoticiasEmBreve />}
 		</div>
 	);
 }

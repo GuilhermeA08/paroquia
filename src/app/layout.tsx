@@ -17,6 +17,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://www.paroquiadesantanacgrn.com.br"),
 	title: "Paróquia de Sant’Ana",
 	description:
 		"Site oficial da Paróquia de Sant’Ana de Campo Grande/RN, Diocese de Mossoró. Conheça nossa história, horários de missas, localização e muito mais.",
@@ -33,8 +34,11 @@ export const metadata: Metadata = {
 	],
 	authors: [{ name: "Paróquia de Sant’Ana" }],
 	openGraph: {
-		title: "Paróquia de Sant’Ana",
-		description: "Site oficial da Paróquia de Sant’Ana",
+		title: "Paróquia de Sant’Ana · Campo Grande/RN",
+		description:
+			"Missas aos domingos às 8h e 19h. Horários, história, comunidades e notícias da paróquia. Diocese de Mossoró.",
+		url: "/",
+		siteName: "Paróquia de Sant’Ana",
 		type: "website",
 		locale: "pt_BR",
 	},

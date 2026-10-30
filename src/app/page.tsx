@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NewsCard from "@/components/NewsCard";
+import NoticiasEmBreve from "@/components/NoticiasEmBreve";
 import ProximaMissa from "@/components/ProximaMissa";
 import WeekSchedule from "@/components/WeekSchedule";
 import { outrosHorarios, paroquiaInfo } from "@/lib/data";
@@ -138,14 +139,17 @@ export default function Home() {
 								Últimas notícias
 							</h2>
 						</div>
-						<Link
-							href="/noticias"
-							className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
-						>
-							Todos os avisos
-						</Link>
+						{principal && (
+							<Link
+								href="/noticias"
+								className="text-sm font-semibold text-primary underline decoration-gold underline-offset-4"
+							>
+								Todos os avisos
+							</Link>
+						)}
 					</div>
 
+					{!principal && <NoticiasEmBreve />}
 					<div className="grid grid-cols-1 gap-x-12 lg:grid-cols-[1.3fr_1fr]">
 						{principal && (
 							<NewsCard
