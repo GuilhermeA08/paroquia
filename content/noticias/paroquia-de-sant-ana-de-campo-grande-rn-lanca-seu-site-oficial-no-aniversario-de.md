@@ -22,7 +22,7 @@ O site foi desenvolvido com seções intuitivas para atender tanto aos moradores
 
 - **Horários de Missas e Celebrações**: Informações atualizadas sobre as missas dominicais (celebradas habitualmente às 08h00 e às 19h00), bem como celebrações especiais, como a tradicional Missa do Sagrado Coração de Jesus, realizada na primeira sexta-feira de cada mês.
 
-- **Comunidades e Localização**: Guia completo com o endereço da Igreja Matriz (situada na Rua Padre Pinto, 130, Centro, Campo Grande – RN) e a organização das comunidades pertencentes à paróquia.
+- **Comunidades e Localização**: Guia completo com o endereço da Igreja Matriz e a organização das comunidades pertencentes à paróquia.
 
 - **Área de Downloads e Galeria de Fotos**: Espaço onde fiéis e visitantes podem conferir registros visuais das celebrações, além de ter acesso a materiais oficiais da paróquia, como o brasão e informativos.
 
