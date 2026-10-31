@@ -3,6 +3,7 @@ import { EB_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { paroquiaInfo } from "@/lib/data";
 
 const garamond = EB_Garamond({
 	variable: "--font-garamond",
@@ -17,7 +18,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://www.paroquiadesantanacgrn.com.br"),
+	metadataBase: new URL(paroquiaInfo.site),
 	title: "Paróquia de Sant’Ana",
 	description:
 		"Site oficial da Paróquia de Sant’Ana de Campo Grande/RN, Diocese de Mossoró. Conheça nossa história, horários de missas, localização e muito mais.",

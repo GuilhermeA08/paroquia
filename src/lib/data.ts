@@ -3,6 +3,7 @@
 
 export const paroquiaInfo = {
 	nome: "Paróquia de Sant’Ana",
+	site: "https://www.paroquiadesantanacgrn.com.br",
 	diocese: "Diocese de Mossoró",
 	siteDiocese: "https://diocesedemossoro.com.br/",
 	fundacao: "1837",
